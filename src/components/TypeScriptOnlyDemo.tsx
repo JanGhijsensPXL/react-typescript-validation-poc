@@ -10,7 +10,7 @@ type Props = {
  * TypeScript checks types at compile time, but at runtime the data is accepted
  * as-is — invalid values that satisfy the structural shape pass without error.
  */
-function validateWithTypeScriptOnly(data: unknown): {
+export function validateWithTypeScriptOnly(data: unknown): {
   passed: boolean;
   note: string;
 } {
