@@ -4,9 +4,10 @@ import TypeScriptOnlyDemo from './components/TypeScriptOnlyDemo';
 import ZodValidationDemo from './components/ZodValidationDemo';
 import SuperstructValidationDemo from './components/SuperstructValidationDemo';
 import TypanionValidationDemo from './components/TypanionValidationDemo';
+import BenchmarkDashboard from './components/BenchmarkDashboard';
 import { TEST_CASES } from './data/testCases';
 
-type Tab = 'typescript' | 'zod' | 'superstruct' | 'typanion';
+type Tab = 'typescript' | 'zod' | 'superstruct' | 'typanion' | 'benchmark';
 
 function App() {
   const [activeTab, setActiveTab] = useState<Tab>('typescript');
@@ -45,6 +46,12 @@ function App() {
         >
           Approach 4: TypeScript + Typanion
         </button>
+        <button
+          className={`tab-btn ${activeTab === 'benchmark' ? 'active' : ''}`}
+          onClick={() => setActiveTab('benchmark')}
+        >
+          Dashboard: Benchmarks
+        </button>
       </nav>
 
       <main className="app-main">
@@ -52,6 +59,7 @@ function App() {
         {activeTab === 'zod' && <ZodValidationDemo testCases={TEST_CASES} />}
         {activeTab === 'superstruct' && <SuperstructValidationDemo testCases={TEST_CASES} />}
         {activeTab === 'typanion' && <TypanionValidationDemo testCases={TEST_CASES} />}
+        {activeTab === 'benchmark' && <BenchmarkDashboard />}
       </main>
     </div>
   );

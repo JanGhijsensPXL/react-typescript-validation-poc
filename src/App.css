@@ -187,6 +187,119 @@
   line-height: 1.6;
 }
 
+/* ===== Benchmark dashboard ===== */
+.benchmark-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.benchmark-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.86rem;
+  color: #c9c9c9;
+}
+
+.benchmark-field input {
+  min-width: 150px;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid #555;
+  border-radius: 6px;
+  background: #111;
+  color: #f7f7f7;
+}
+
+.benchmark-run-btn {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #646cff;
+  border-radius: 8px;
+  background: #1d2268;
+  color: #eef;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.benchmark-run-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.benchmark-error {
+  color: #f87171;
+  margin-top: 0.6rem;
+}
+
+.benchmark-panel {
+  margin-top: 1rem;
+  border: 1px solid #333;
+  border-radius: 10px;
+  background: #1e1e1e;
+  padding: 1rem;
+}
+
+.benchmark-panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.benchmark-panel-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.benchmark-panel-header span {
+  color: #a7a7a7;
+  font-size: 0.84rem;
+}
+
+.benchmark-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.benchmark-table th,
+.benchmark-table td {
+  border-bottom: 1px solid #333;
+  padding: 0.55rem 0.45rem;
+  text-align: left;
+}
+
+.benchmark-table th {
+  color: #d0d0d0;
+  font-weight: 600;
+}
+
+.benchmark-table tbody tr:hover {
+  background: #252525;
+}
+
+@media (max-width: 780px) {
+  .benchmark-field {
+    width: 100%;
+  }
+
+  .benchmark-field input {
+    width: 100%;
+  }
+
+  .benchmark-run-btn {
+    width: 100%;
+  }
+}
+
 /* ===== Light mode overrides ===== */
 @media (prefers-color-scheme: light) {
   .subtitle { color: #666; }
@@ -207,5 +320,13 @@
   .missed-badge { background: #fffbeb; color: #92400e; }
   .caught-badge { background: #f0fdf4; color: #15803d; }
   .error-list { color: #b91c1c; }
+  .benchmark-field { color: #444; }
+  .benchmark-field input { background: #fff; color: #111; border-color: #ccc; }
+  .benchmark-run-btn { background: #eef0ff; color: #2d3ab7; border-color: #7280ff; }
+  .benchmark-error { color: #b91c1c; }
+  .benchmark-panel { background: #fafafa; border-color: #ddd; }
+  .benchmark-panel-header span { color: #666; }
+  .benchmark-table th, .benchmark-table td { border-bottom-color: #ddd; }
+  .benchmark-table tbody tr:hover { background: #f3f4f6; }
 }
 
