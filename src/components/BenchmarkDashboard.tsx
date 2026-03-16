@@ -11,6 +11,7 @@ export default function BenchmarkDashboard() {
   const [runs, setRuns] = useState<number>(10);
   const [mode, setMode] = useState<BenchmarkMode>('detailed-errors');
   const [profile, setProfile] = useState<DatasetProfile>('both');
+  const [invalidRatePercent, setInvalidRatePercent] = useState<number>(25);
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<BenchmarkScenario[]>([]);
   const [error, setError] = useState<string>('');
@@ -24,6 +25,7 @@ export default function BenchmarkDashboard() {
         runs,
         mode,
         profile,
+        invalidRate: invalidRatePercent / 100,
       });
       setResults(rows);
     } catch {
@@ -85,7 +87,20 @@ export default function BenchmarkDashboard() {
             <option value="both">both</option>
             <option value="valid-only">valid-only</option>
             <option value="invalid-only">invalid-only</option>
+            <option value="random-mix">random-mix</option>
           </select>
+        </label>
+        <label className="benchmark-field">
+          Invalid % (random-mix)
+          <input
+            type="number"
+            min={0}
+            max={100}
+            step={1}
+            value={invalidRatePercent}
+            onChange={(e) => setInvalidRatePercent(Number(e.target.value))}
+            disabled={profile !== 'random-mix'}
+          />
         </label>
         <button type="button" className="benchmark-run-btn" onClick={handleRun} disabled={loading}>
           {loading ? 'Running...' : 'Run benchmark'}

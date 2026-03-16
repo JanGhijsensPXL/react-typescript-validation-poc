@@ -18,7 +18,8 @@ export type BenchmarkScenario = {
   title: string;
   size: number;
   runs: number;
-  validOnly: boolean;
+  kind: 'valid' | 'invalid' | 'random';
+  invalidRate: number;
   rows: BenchmarkRow[];
 };
 
@@ -27,27 +28,29 @@ export type BenchmarkConfig = {
   runs: number;
   mode?: BenchmarkMode;
   profile?: DatasetProfile;
+  invalidRate?: number;
+  randomSeed?: number;
 };
 
 export type BenchmarkMode = 'detailed-errors' | 'fast-boolean';
 
-export type DatasetProfile = 'both' | 'valid-only' | 'invalid-only';
+export type DatasetProfile = 'both' | 'valid-only' | 'invalid-only' | 'random-mix';
 
 type Validator = {
   label: string;
   run: (input: unknown) => boolean;
 };
 
-function cloneWithMutation(index: number, validOnly: boolean): unknown {
-  if (validOnly) {
-    return {
-      ...VALID_RECORD,
-      id: `SL-2024-${String(index + 1).padStart(6, '0')}`,
-      animalCount: (index % 200) + 1,
-      totalWeightKg: 500 + (index % 5000),
-    };
-  }
+function cloneValid(index: number): unknown {
+  return {
+    ...VALID_RECORD,
+    id: `SL-2024-${String(index + 1).padStart(6, '0')}`,
+    animalCount: (index % 200) + 1,
+    totalWeightKg: 500 + (index % 5000),
+  };
+}
 
+function cloneInvalid(index: number): unknown {
   const mod = index % 8;
   if (mod === 0) return { ...VALID_RECORD, id: '' };
   if (mod === 1) return { ...VALID_RECORD, herderName: '' };
@@ -59,8 +62,33 @@ function cloneWithMutation(index: number, validOnly: boolean): unknown {
   return { ...VALID_RECORD, veterinarianApproved: 'true' };
 }
 
-function makeDataset(size: number, validOnly: boolean): unknown[] {
-  return Array.from({ length: size }, (_, i) => cloneWithMutation(i, validOnly));
+function createSeededRandom(seed: number): () => number {
+  let state = seed >>> 0;
+  return () => {
+    state = (state * 1664525 + 1013904223) >>> 0;
+    return state / 2 ** 32;
+  };
+}
+
+function makeDataset(
+  size: number,
+  kind: 'valid' | 'invalid' | 'random',
+  invalidRate: number,
+  randomSeed: number,
+): unknown[] {
+  if (kind === 'valid') {
+    return Array.from({ length: size }, (_, i) => cloneValid(i));
+  }
+
+  if (kind === 'invalid') {
+    return Array.from({ length: size }, (_, i) => cloneInvalid(i));
+  }
+
+  const rand = createSeededRandom(randomSeed);
+  return Array.from({ length: size }, (_, i) => {
+    const isInvalid = rand() < invalidRate;
+    return isInvalid ? cloneInvalid(i) : cloneValid(i);
+  });
 }
 
 function benchOne(validator: Validator, dataset: unknown[], runs: number): BenchmarkRow {
@@ -149,25 +177,39 @@ export async function runValidationBenchmarks(config: BenchmarkConfig): Promise<
   const runs = Math.max(1, Math.min(config.runs, 100));
   const mode: BenchmarkMode = config.mode ?? 'detailed-errors';
   const profile: DatasetProfile = config.profile ?? 'both';
+  const invalidRate = Math.max(0, Math.min(config.invalidRate ?? 0.25, 1));
+  const randomSeed = config.randomSeed ?? 1337;
   const validators = getValidators(mode);
 
   const scenarios: Omit<BenchmarkScenario, 'rows'>[] = [];
 
-  if (profile !== 'invalid-only') {
+  if (profile === 'both' || profile === 'valid-only') {
     scenarios.push({
       title: 'Valid dataset',
       size,
       runs,
-      validOnly: true,
+      kind: 'valid',
+      invalidRate: 0,
     });
   }
 
-  if (profile !== 'valid-only') {
+  if (profile === 'both' || profile === 'invalid-only') {
     scenarios.push({
-      title: 'Invalid/mixed dataset',
+      title: 'Invalid dataset',
       size,
       runs,
-      validOnly: false,
+      kind: 'invalid',
+      invalidRate: 1,
+    });
+  }
+
+  if (profile === 'random-mix') {
+    scenarios.push({
+      title: `Random mix dataset (${(invalidRate * 100).toFixed(0)}% invalid)`,
+      size,
+      runs,
+      kind: 'random',
+      invalidRate,
     });
   }
 
@@ -178,7 +220,7 @@ export async function runValidationBenchmarks(config: BenchmarkConfig): Promise<
       globalThis.setTimeout(() => resolve(), 0);
     });
 
-    const dataset = makeDataset(scenario.size, scenario.validOnly);
+    const dataset = makeDataset(scenario.size, scenario.kind, scenario.invalidRate, randomSeed);
     const rows = validators.map((validator) => benchOne(validator, dataset, scenario.runs));
     results.push({ ...scenario, rows });
   }
