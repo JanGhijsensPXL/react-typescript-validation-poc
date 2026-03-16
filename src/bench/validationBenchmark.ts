@@ -25,7 +25,13 @@ export type BenchmarkScenario = {
 export type BenchmarkConfig = {
   size: number;
   runs: number;
+  mode?: BenchmarkMode;
+  profile?: DatasetProfile;
 };
+
+export type BenchmarkMode = 'detailed-errors' | 'fast-boolean';
+
+export type DatasetProfile = 'both' | 'valid-only' | 'invalid-only';
 
 type Validator = {
   label: string;
@@ -88,49 +94,88 @@ function benchOne(validator: Validator, dataset: unknown[], runs: number): Bench
   };
 }
 
-const validators: Validator[] = [
-  {
-    label: 'TypeScript only',
-    run: (input) => validateWithTypeScriptOnly(input).passed,
-  },
-  {
-    label: 'Zod',
-    run: (input) => slaughterRecordSchema.safeParse(input).success,
-  },
-  {
-    label: 'Superstruct',
-    run: (input) => !validate(input, slaughterRecordSuperstructSchema)[0],
-  },
-  {
-    label: 'Typanion',
-    run: (input) => !as(input, slaughterRecordTypanionSchema, { errors: false, throw: false }).errors,
-  },
-];
+function getValidators(mode: BenchmarkMode): Validator[] {
+  if (mode === 'fast-boolean') {
+    return [
+      {
+        label: 'TypeScript only',
+        run: (input) => validateWithTypeScriptOnly(input).passed,
+      },
+      {
+        label: 'Zod',
+        // Parse/throw pattern approximates fail-fast behavior.
+        run: (input) => {
+          try {
+            slaughterRecordSchema.parse(input);
+            return true;
+          } catch {
+            return false;
+          }
+        },
+      },
+      {
+        label: 'Superstruct',
+        run: (input) => slaughterRecordSuperstructSchema.is(input),
+      },
+      {
+        label: 'Typanion',
+        run: (input) => slaughterRecordTypanionSchema(input),
+      },
+    ];
+  }
+
+  return [
+    {
+      label: 'TypeScript only',
+      run: (input) => validateWithTypeScriptOnly(input).passed,
+    },
+    {
+      label: 'Zod',
+      run: (input) => slaughterRecordSchema.safeParse(input).success,
+    },
+    {
+      label: 'Superstruct',
+      run: (input) => !validate(input, slaughterRecordSuperstructSchema)[0],
+    },
+    {
+      label: 'Typanion',
+      run: (input) => !as(input, slaughterRecordTypanionSchema, { errors: true, throw: false }).errors,
+    },
+  ];
+}
 
 export async function runValidationBenchmarks(config: BenchmarkConfig): Promise<BenchmarkScenario[]> {
   const size = Math.max(100, Math.min(config.size, 100000));
   const runs = Math.max(1, Math.min(config.runs, 100));
+  const mode: BenchmarkMode = config.mode ?? 'detailed-errors';
+  const profile: DatasetProfile = config.profile ?? 'both';
+  const validators = getValidators(mode);
 
-  const scenarios: Omit<BenchmarkScenario, 'rows'>[] = [
-    {
+  const scenarios: Omit<BenchmarkScenario, 'rows'>[] = [];
+
+  if (profile !== 'invalid-only') {
+    scenarios.push({
       title: 'Valid dataset',
       size,
       runs,
       validOnly: true,
-    },
-    {
+    });
+  }
+
+  if (profile !== 'valid-only') {
+    scenarios.push({
       title: 'Invalid/mixed dataset',
       size,
       runs,
       validOnly: false,
-    },
-  ];
+    });
+  }
 
   const results: BenchmarkScenario[] = [];
 
   for (const scenario of scenarios) {
     await new Promise<void>((resolve) => {
-      window.setTimeout(() => resolve(), 0);
+      globalThis.setTimeout(() => resolve(), 0);
     });
 
     const dataset = makeDataset(scenario.size, scenario.validOnly);
