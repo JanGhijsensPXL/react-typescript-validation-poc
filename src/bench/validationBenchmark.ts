@@ -12,6 +12,16 @@ export type BenchmarkRow = {
   avgUsPerItem: number;
   elapsedMs: number;
   passCount: number;
+  truePositive: number;
+  trueNegative: number;
+  falsePositive: number;
+  falseNegative: number;
+  accuracy: number;
+  precision: number;
+  recall: number;
+  f1: number;
+  falseAcceptRate: number;
+  falseRejectRate: number;
 };
 
 export type BenchmarkScenario = {
@@ -39,6 +49,11 @@ export type DatasetProfile = 'both' | 'valid-only' | 'invalid-only' | 'random-mi
 type Validator = {
   label: string;
   run: (input: unknown) => boolean;
+};
+
+type BenchmarkItem = {
+  input: unknown;
+  expectedValid: boolean;
 };
 
 function cloneValid(index: number): unknown {
@@ -75,27 +90,36 @@ function makeDataset(
   kind: 'valid' | 'invalid' | 'random',
   invalidRate: number,
   randomSeed: number,
-): unknown[] {
+): BenchmarkItem[] {
   if (kind === 'valid') {
-    return Array.from({ length: size }, (_, i) => cloneValid(i));
+    return Array.from({ length: size }, (_, i) => ({
+      input: cloneValid(i),
+      expectedValid: true,
+    }));
   }
 
   if (kind === 'invalid') {
-    return Array.from({ length: size }, (_, i) => cloneInvalid(i));
+    return Array.from({ length: size }, (_, i) => ({
+      input: cloneInvalid(i),
+      expectedValid: false,
+    }));
   }
 
   const rand = createSeededRandom(randomSeed);
   return Array.from({ length: size }, (_, i) => {
     const isInvalid = rand() < invalidRate;
-    return isInvalid ? cloneInvalid(i) : cloneValid(i);
+    return {
+      input: isInvalid ? cloneInvalid(i) : cloneValid(i),
+      expectedValid: !isInvalid,
+    };
   });
 }
 
-function benchOne(validator: Validator, dataset: unknown[], runs: number): BenchmarkRow {
+function benchOne(validator: Validator, dataset: BenchmarkItem[], runs: number): BenchmarkRow {
   // Warm-up run to reduce one-time JIT overhead.
   for (let i = 0; i < 2; i += 1) {
     for (const item of dataset) {
-      validator.run(item);
+      validator.run(item.input);
     }
   }
 
@@ -104,7 +128,7 @@ function benchOne(validator: Validator, dataset: unknown[], runs: number): Bench
 
   for (let run = 0; run < runs; run += 1) {
     for (const item of dataset) {
-      if (validator.run(item)) {
+      if (validator.run(item.input)) {
         passCount += 1;
       }
     }
@@ -113,12 +137,54 @@ function benchOne(validator: Validator, dataset: unknown[], runs: number): Bench
   const elapsedMs = performance.now() - start;
   const totalItems = dataset.length * runs;
 
+  let truePositive = 0;
+  let trueNegative = 0;
+  let falsePositive = 0;
+  let falseNegative = 0;
+
+  // Compute classification quality metrics on a single pass.
+  for (const item of dataset) {
+    const predictedValid = validator.run(item.input);
+
+    if (predictedValid && item.expectedValid) {
+      truePositive += 1;
+    } else if (!predictedValid && !item.expectedValid) {
+      trueNegative += 1;
+    } else if (predictedValid && !item.expectedValid) {
+      falsePositive += 1;
+    } else {
+      falseNegative += 1;
+    }
+  }
+
+  const sampleTotal = dataset.length;
+  const totalActualValid = truePositive + falseNegative;
+  const totalActualInvalid = trueNegative + falsePositive;
+  const precisionDenominator = truePositive + falsePositive;
+  const recallDenominator = truePositive + falseNegative;
+  const precision = precisionDenominator === 0 ? 0 : truePositive / precisionDenominator;
+  const recall = recallDenominator === 0 ? 0 : truePositive / recallDenominator;
+  const f1 =
+    precision + recall === 0
+      ? 0
+      : (2 * precision * recall) / (precision + recall);
+
   return {
     validator: validator.label,
     avgMsPerRun: elapsedMs / runs,
     avgUsPerItem: (elapsedMs * 1000) / totalItems,
     elapsedMs,
     passCount,
+    truePositive,
+    trueNegative,
+    falsePositive,
+    falseNegative,
+    accuracy: sampleTotal === 0 ? 0 : (truePositive + trueNegative) / sampleTotal,
+    precision,
+    recall,
+    f1,
+    falseAcceptRate: totalActualInvalid === 0 ? 0 : falsePositive / totalActualInvalid,
+    falseRejectRate: totalActualValid === 0 ? 0 : falseNegative / totalActualValid,
   };
 }
 

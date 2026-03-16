@@ -36,6 +36,10 @@ async function main(): Promise<void> {
           .sort((a, b) => a.avgUsPerItem - b.avgUsPerItem)
           .map((row) => ({
             Validator: row.validator,
+            'accuracy %': (row.accuracy * 100).toFixed(2),
+            F1: row.f1.toFixed(3),
+            'false accept %': (row.falseAcceptRate * 100).toFixed(2),
+            'false reject %': (row.falseRejectRate * 100).toFixed(2),
             'avg ms/run': row.avgMsPerRun.toFixed(3),
             'avg us/item': row.avgUsPerItem.toFixed(3),
             'elapsed ms': row.elapsedMs.toFixed(2),

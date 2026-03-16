@@ -45,6 +45,11 @@ export default function BenchmarkDashboard() {
       </p>
 
       <p className="benchmark-mode-note">
+        Quality metrics: <code>false accept %</code> means invalid inputs that were wrongly
+        accepted; <code>false reject %</code> means valid inputs that were wrongly rejected.
+      </p>
+
+      <p className="benchmark-mode-note">
         <strong>Mode:</strong> <code>detailed-errors</code> includes richer failure tracking,
         while <code>fast-boolean</code> focuses on simple pass/fail checks.
       </p>
@@ -155,6 +160,10 @@ export default function BenchmarkDashboard() {
                 <thead>
                   <tr>
                     <th>Validator</th>
+                    <th>accuracy %</th>
+                    <th>F1</th>
+                    <th>false accept %</th>
+                    <th>false reject %</th>
                     <th>avg ms/run</th>
                     <th>avg us/item</th>
                     <th>elapsed ms</th>
@@ -165,6 +174,10 @@ export default function BenchmarkDashboard() {
                   {sortedRows.map((row) => (
                     <tr key={row.validator}>
                       <td>{row.validator}</td>
+                      <td>{(row.accuracy * 100).toFixed(2)}</td>
+                      <td>{row.f1.toFixed(3)}</td>
+                      <td>{(row.falseAcceptRate * 100).toFixed(2)}</td>
+                      <td>{(row.falseRejectRate * 100).toFixed(2)}</td>
                       <td>{row.avgMsPerRun.toFixed(3)}</td>
                       <td>{row.avgUsPerItem.toFixed(3)}</td>
                       <td>{row.elapsedMs.toFixed(2)}</td>
