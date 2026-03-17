@@ -28,8 +28,7 @@ export type BenchmarkScenario = {
   title: string;
   size: number;
   runs: number;
-  kind: 'valid' | 'invalid' | 'random';
-  invalidRate: number;
+  kind: 'valid' | 'invalid';
   rows: BenchmarkRow[];
 };
 
@@ -38,13 +37,11 @@ export type BenchmarkConfig = {
   runs: number;
   mode?: BenchmarkMode;
   profile?: DatasetProfile;
-  invalidRate?: number;
-  randomSeed?: number;
 };
 
 export type BenchmarkMode = 'detailed-errors' | 'fast-boolean';
 
-export type DatasetProfile = 'both' | 'valid-only' | 'invalid-only' | 'random-mix';
+export type DatasetProfile = 'both' | 'valid-only' | 'invalid-only';
 
 type Validator = {
   label: string;
@@ -66,7 +63,7 @@ function cloneValid(index: number): unknown {
 }
 
 function cloneInvalid(index: number): unknown {
-  const mod = index % 8;
+  const mod = index % 9;
   if (mod === 0) return { ...VALID_RECORD, id: '' };
   if (mod === 1) return { ...VALID_RECORD, herderName: '' };
   if (mod === 2) return { ...VALID_RECORD, animalSpecies: 'pig' };
@@ -74,22 +71,13 @@ function cloneInvalid(index: number): unknown {
   if (mod === 4) return { ...VALID_RECORD, slaughterDate: '2024-13-99' };
   if (mod === 5) return { ...VALID_RECORD, animalCount: -1 };
   if (mod === 6) return { ...VALID_RECORD, totalWeightKg: 0 };
-  return { ...VALID_RECORD, veterinarianApproved: 'true' };
-}
-
-function createSeededRandom(seed: number): () => number {
-  let state = seed >>> 0;
-  return () => {
-    state = (state * 1664525 + 1013904223) >>> 0;
-    return state / 2 ** 32;
-  };
+  if (mod === 7) return { ...VALID_RECORD, veterinarianApproved: 'true' };
+  return { ...VALID_RECORD, extraField: 'unexpected' };
 }
 
 function makeDataset(
   size: number,
-  kind: 'valid' | 'invalid' | 'random',
-  invalidRate: number,
-  randomSeed: number,
+  kind: 'valid' | 'invalid',
 ): BenchmarkItem[] {
   if (kind === 'valid') {
     return Array.from({ length: size }, (_, i) => ({
@@ -105,14 +93,7 @@ function makeDataset(
     }));
   }
 
-  const rand = createSeededRandom(randomSeed);
-  return Array.from({ length: size }, (_, i) => {
-    const isInvalid = rand() < invalidRate;
-    return {
-      input: isInvalid ? cloneInvalid(i) : cloneValid(i),
-      expectedValid: !isInvalid,
-    };
-  });
+  return [];
 }
 
 function benchOne(validator: Validator, dataset: BenchmarkItem[], runs: number): BenchmarkRow {
@@ -243,8 +224,6 @@ export async function runValidationBenchmarks(config: BenchmarkConfig): Promise<
   const runs = Math.max(1, Math.min(config.runs, 100));
   const mode: BenchmarkMode = config.mode ?? 'detailed-errors';
   const profile: DatasetProfile = config.profile ?? 'both';
-  const invalidRate = Math.max(0, Math.min(config.invalidRate ?? 0.25, 1));
-  const randomSeed = config.randomSeed ?? 1337;
   const validators = getValidators(mode);
 
   const scenarios: Omit<BenchmarkScenario, 'rows'>[] = [];
@@ -255,7 +234,6 @@ export async function runValidationBenchmarks(config: BenchmarkConfig): Promise<
       size,
       runs,
       kind: 'valid',
-      invalidRate: 0,
     });
   }
 
@@ -265,17 +243,6 @@ export async function runValidationBenchmarks(config: BenchmarkConfig): Promise<
       size,
       runs,
       kind: 'invalid',
-      invalidRate: 1,
-    });
-  }
-
-  if (profile === 'random-mix') {
-    scenarios.push({
-      title: `Random mix dataset (${(invalidRate * 100).toFixed(0)}% invalid)`,
-      size,
-      runs,
-      kind: 'random',
-      invalidRate,
     });
   }
 
@@ -286,7 +253,7 @@ export async function runValidationBenchmarks(config: BenchmarkConfig): Promise<
       globalThis.setTimeout(() => resolve(), 0);
     });
 
-    const dataset = makeDataset(scenario.size, scenario.kind, scenario.invalidRate, randomSeed);
+    const dataset = makeDataset(scenario.size, scenario.kind);
     const rows = validators.map((validator) => benchOne(validator, dataset, scenario.runs));
     results.push({ ...scenario, rows });
   }

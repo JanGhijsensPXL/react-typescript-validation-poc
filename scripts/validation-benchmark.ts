@@ -8,8 +8,7 @@ async function main(): Promise<void> {
   const size = 10_000;
   const runs = 15;
   const modes: BenchmarkMode[] = ['detailed-errors', 'fast-boolean'];
-  const profiles: DatasetProfile[] = ['both', 'random-mix'];
-  const invalidRate = 0.25;
+  const profiles: DatasetProfile[] = ['both'];
 
   console.log('Validation Benchmark (single process, local machine)');
   console.log('Interpret relatively: use these numbers to compare libraries, not as absolute throughput.');
@@ -24,7 +23,6 @@ async function main(): Promise<void> {
         runs,
         mode,
         profile,
-        invalidRate,
       });
 
       console.log(`\nDataset profile: ${profile}`);
