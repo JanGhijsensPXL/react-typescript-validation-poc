@@ -196,6 +196,27 @@
   margin-bottom: 1rem;
 }
 
+.zod-flow-panel {
+  margin: 0 0 1rem;
+  border: 1px solid #343a40;
+  border-radius: 10px;
+  background: #171a1f;
+  padding: 0.9rem 1rem;
+}
+
+.zod-flow-panel h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.96rem;
+}
+
+.zod-flow-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: #d1d5db;
+  line-height: 1.5;
+  font-size: 0.84rem;
+}
+
 .benchmark-mode-note {
   margin: -0.5rem 0 1rem;
   font-size: 0.83rem;
@@ -350,6 +371,10 @@
     width: 100%;
   }
 
+  .zod-flow-panel {
+    padding: 0.8rem;
+  }
+
   .benchmark-field input {
     width: 100%;
   }
@@ -398,6 +423,8 @@
   .benchmark-field input { background: #fff; color: #111; border-color: #ccc; }
   .benchmark-field select { background: #fff; color: #111; border-color: #ccc; }
   .benchmark-mode-note { color: #6b7280; }
+  .zod-flow-panel { background: #fff; border-color: #e5e7eb; }
+  .zod-flow-list { color: #374151; }
   .benchmark-run-btn { background: #eef0ff; color: #2d3ab7; border-color: #7280ff; }
   .benchmark-error { color: #b91c1c; }
   .benchmark-panel { background: #fafafa; border-color: #ddd; }
