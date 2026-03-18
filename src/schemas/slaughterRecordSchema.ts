@@ -30,6 +30,6 @@ export const slaughterRecordSchema = z.object({
   veterinarianApproved: z.boolean({
     error: 'Veterinarian approval must be true or false',
   }),
-});
+}).strict();
 
 export type SlaughterRecordInput = z.infer<typeof slaughterRecordSchema>;

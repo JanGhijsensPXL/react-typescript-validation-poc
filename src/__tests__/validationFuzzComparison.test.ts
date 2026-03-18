@@ -120,9 +120,8 @@ describe('fuzz comparison across validators', () => {
     const superstruct = computeMismatchCount(cases, (input) => validateWithSuperstruct(input).passed);
     const typanion = computeMismatchCount(cases, (input) => validateWithTypanion(input).passed);
 
-    // Current Zod schema is non-strict, so it accepts unknown fields.
-    expect(zod.falseAccepts).toBeGreaterThan(0);
-    // Superstruct and Typanion configurations are strict on extra keys here.
+    // All runtime validators are strict on extra keys in the current setup.
+    expect(zod.falseAccepts).toBe(0);
     expect(superstruct.falseAccepts).toBe(0);
     expect(typanion.falseAccepts).toBe(0);
   });
