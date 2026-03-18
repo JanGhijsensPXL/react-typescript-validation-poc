@@ -46,7 +46,7 @@ export default function BenchmarkDashboard() {
     <section className="demo-section">
       <h2>Benchmark Dashboard</h2>
       <p className="approach-description">
-        Run all four validators in-browser on identical generated datasets and compare
+        Run all five validators in-browser on identical generated datasets and compare
         timing side-by-side. These numbers are machine-dependent and best used for
         relative comparison.
       </p>

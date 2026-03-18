@@ -5,6 +5,7 @@ import { VALID_RECORD } from '../data/testCases';
 import { slaughterRecordSchema } from '../schemas/slaughterRecordSchema';
 import { slaughterRecordSuperstructSchema } from '../schemas/slaughterRecordSuperstruct';
 import { slaughterRecordTypanionSchema } from '../schemas/slaughterRecordTypanion';
+import { slaughterRecordYupSchema, validateWithYup } from '../schemas/slaughterRecordYup';
 
 export type BenchmarkRow = {
   validator: string;
@@ -193,6 +194,10 @@ function getValidators(mode: BenchmarkMode): Validator[] {
         run: (input) => slaughterRecordSuperstructSchema.is(input),
       },
       {
+        label: 'Yup',
+        run: (input) => slaughterRecordYupSchema.isValidSync(input, { strict: true }),
+      },
+      {
         label: 'Typanion',
         run: (input) => slaughterRecordTypanionSchema(input),
       },
@@ -211,6 +216,10 @@ function getValidators(mode: BenchmarkMode): Validator[] {
     {
       label: 'Superstruct',
       run: (input) => !validate(input, slaughterRecordSuperstructSchema)[0],
+    },
+    {
+      label: 'Yup',
+      run: (input) => validateWithYup(input).passed,
     },
     {
       label: 'Typanion',
