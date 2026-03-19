@@ -267,25 +267,9 @@ function extractPathTokens(errors: string[]): string[] {
       continue;
     }
 
-    // Try to extract path before colon (standard format)
-    const colonIndex = err.indexOf(':');
-    if (colonIndex > 0) {
-      const path = err.substring(0, colonIndex).trim();
-      // Filter out generic placeholders like "unknown field", "value", "root"
-      if (path && path !== 'value' && path !== 'root' && !path.includes('unknown')) {
-        tokens.push(path);
-      }
-      continue;
-    }
-
-    // For errors without colons, try to parse parenthesized field names
-    // e.g., "(id): some error" or similar patterns
-    const parenMatch = err.match(/^\(([^)]+)\):/);
-    if (parenMatch) {
-      const path = parenMatch[1].trim();
-      if (path) {
-        tokens.push(path);
-      }
+    const path = err.split(':')[0]?.trim();
+    if (path) {
+      tokens.push(path);
     }
   }
 
