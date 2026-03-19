@@ -5,10 +5,16 @@ import ZodValidationDemo from './components/ZodValidationDemo';
 import SuperstructValidationDemo from './components/SuperstructValidationDemo';
 import TypanionValidationDemo from './components/TypanionValidationDemo';
 import YupValidationDemo from './components/YupValidationDemo';
-import BenchmarkDashboard from './components/BenchmarkDashboard';
+import ValidationAnalysis from './components/ValidationAnalysis';
 import { TEST_CASES } from './data/testCases';
 
-type Tab = 'typescript' | 'zod' | 'superstruct' | 'yup' | 'typanion' | 'benchmark';
+type Tab =
+  | 'typescript'
+  | 'zod'
+  | 'superstruct'
+  | 'yup'
+  | 'typanion'
+  | 'analysis';
 
 function App() {
   const [activeTab, setActiveTab] = useState<Tab>('typescript');
@@ -54,10 +60,10 @@ function App() {
           Approach 5: TypeScript + Typanion
         </button>
         <button
-          className={`tab-btn ${activeTab === 'benchmark' ? 'active' : ''}`}
-          onClick={() => setActiveTab('benchmark')}
+          className={`tab-btn ${activeTab === 'analysis' ? 'active' : ''}`}
+          onClick={() => setActiveTab('analysis')}
         >
-          Dashboard: Benchmarks
+          Analysis: Speed, Quality & Tradeoffs
         </button>
       </nav>
 
@@ -67,7 +73,7 @@ function App() {
         {activeTab === 'superstruct' && <SuperstructValidationDemo testCases={TEST_CASES} />}
         {activeTab === 'yup' && <YupValidationDemo testCases={TEST_CASES} />}
         {activeTab === 'typanion' && <TypanionValidationDemo testCases={TEST_CASES} />}
-        {activeTab === 'benchmark' && <BenchmarkDashboard />}
+        {activeTab === 'analysis' && <ValidationAnalysis />}
       </main>
     </div>
   );
