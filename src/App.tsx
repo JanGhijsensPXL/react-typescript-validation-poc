@@ -5,6 +5,8 @@ import ZodValidationDemo from './components/ZodValidationDemo';
 import SuperstructValidationDemo from './components/SuperstructValidationDemo';
 import TypanionValidationDemo from './components/TypanionValidationDemo';
 import YupValidationDemo from './components/YupValidationDemo';
+import AjvValidationDemo from './components/AjvValidationDemo';
+import JoiValidationDemo from './components/JoiValidationDemo';
 import ValidationAnalysis from './components/ValidationAnalysis';
 import { TEST_CASES } from './data/testCases';
 
@@ -14,6 +16,8 @@ type Tab =
   | 'superstruct'
   | 'yup'
   | 'typanion'
+  | 'ajv'
+  | 'joi'
   | 'analysis';
 
 function App() {
@@ -60,6 +64,18 @@ function App() {
           Approach 5: TypeScript + Typanion
         </button>
         <button
+          className={`tab-btn ${activeTab === 'ajv' ? 'active' : ''}`}
+          onClick={() => setActiveTab('ajv')}
+        >
+          Approach 6: TypeScript + AJV
+        </button>
+        <button
+          className={`tab-btn ${activeTab === 'joi' ? 'active' : ''}`}
+          onClick={() => setActiveTab('joi')}
+        >
+          Approach 7: TypeScript + Joi
+        </button>
+        <button
           className={`tab-btn ${activeTab === 'analysis' ? 'active' : ''}`}
           onClick={() => setActiveTab('analysis')}
         >
@@ -73,6 +89,8 @@ function App() {
         {activeTab === 'superstruct' && <SuperstructValidationDemo testCases={TEST_CASES} />}
         {activeTab === 'yup' && <YupValidationDemo testCases={TEST_CASES} />}
         {activeTab === 'typanion' && <TypanionValidationDemo testCases={TEST_CASES} />}
+        {activeTab === 'ajv' && <AjvValidationDemo testCases={TEST_CASES} />}
+        {activeTab === 'joi' && <JoiValidationDemo testCases={TEST_CASES} />}
         {activeTab === 'analysis' && <ValidationAnalysis />}
       </main>
     </div>

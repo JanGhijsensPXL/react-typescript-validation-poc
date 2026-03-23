@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { runValidationBenchmarks, type BenchmarkRow } from '../bench/validationBenchmark';
 import { validateWithTypeScriptOnly } from './TypeScriptOnlyDemo';
-import { slaughterRecordSchema } from '../schemas/slaughterRecordSchema';
+import { slaughterRecordSchema } from '../schemas/slaughterRecordZod';
 import { validateWithSuperstruct } from '../schemas/slaughterRecordSuperstruct';
 import { validateWithYup } from '../schemas/slaughterRecordYup';
 import { validateWithTypanion } from '../schemas/slaughterRecordTypanion';
 import { VALID_RECORD } from '../data/testCases';
-import zodSchemaSource from '../schemas/slaughterRecordSchema.ts?raw';
+import zodSchemaSource from '../schemas/slaughterRecordZod.ts?raw';
 import superstructSchemaSource from '../schemas/slaughterRecordSuperstruct.ts?raw';
 import yupSchemaSource from '../schemas/slaughterRecordYup.ts?raw';
 import typanionSchemaSource from '../schemas/slaughterRecordTypanion.ts?raw';

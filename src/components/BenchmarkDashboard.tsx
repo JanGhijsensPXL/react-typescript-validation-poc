@@ -18,7 +18,7 @@ export default function BenchmarkDashboard() {
   const zodFlowSteps = [
     'TEST_CASES are created as unknown inputs in src/data/testCases.ts.',
     'App passes TEST_CASES into ZodValidationDemo when the Zod tab is selected.',
-    'slaughterRecordSchema defines runtime constraints for every field in src/schemas/slaughterRecordSchema.ts.',
+    'slaughterRecordSchema defines runtime constraints for every field in src/schemas/slaughterRecordZod.ts.',
     'validateWithZod calls slaughterRecordSchema.safeParse(data) for each case.',
     'On failure, Zod issues are mapped to field: message strings for display.',
     'UI compares actual result against expectValid and labels each case as caught or missed.',

@@ -7,15 +7,19 @@ import {
   type BenchmarkScenario,
 } from '../bench/validationBenchmark';
 import { validateWithTypeScriptOnly } from './TypeScriptOnlyDemo';
-import { slaughterRecordSchema } from '../schemas/slaughterRecordSchema';
+import { slaughterRecordSchema } from '../schemas/slaughterRecordZod';
 import { validateWithSuperstruct } from '../schemas/slaughterRecordSuperstruct';
 import { validateWithYup } from '../schemas/slaughterRecordYup';
 import { validateWithTypanion } from '../schemas/slaughterRecordTypanion';
+import { validateWithAjv } from '../schemas/slaughterRecordAjv';
+import { validateWithJoi } from '../schemas/slaughterRecordJoi';
 import { VALID_RECORD } from '../data/testCases';
-import zodSchemaSource from '../schemas/slaughterRecordSchema.ts?raw';
+import zodSchemaSource from '../schemas/slaughterRecordZod.ts?raw';
 import superstructSchemaSource from '../schemas/slaughterRecordSuperstruct.ts?raw';
 import yupSchemaSource from '../schemas/slaughterRecordYup.ts?raw';
 import typanionSchemaSource from '../schemas/slaughterRecordTypanion.ts?raw';
+import ajvSchemaSource from '../schemas/slaughterRecordAjv.ts?raw';
+import joiSchemaSource from '../schemas/slaughterRecordJoi.ts?raw';
 
 type SnapshotRow = {
   validator: string;
@@ -192,6 +196,43 @@ function buildSourceMetricRows(): SourceMetricRow[] {
       ],
       ['makeValidator('],
     ),
+    computeSourceMetricDraft(
+      'AJV',
+      ajvSchemaSource,
+      [
+        'type:',
+        'properties:',
+        'required:',
+        'additionalProperties:',
+        'minimum:',
+        'maximum:',
+        'exclusiveMinimum:',
+        'minLength:',
+        'maxLength:',
+        'pattern:',
+        'enum:',
+      ],
+      ['compile(', 'validateWithAjv('],
+    ),
+    computeSourceMetricDraft(
+      'Joi',
+      joiSchemaSource,
+      [
+        'Joi.object(',
+        'Joi.string(',
+        'Joi.number(',
+        'Joi.boolean(',
+        '.valid(',
+        '.pattern(',
+        '.integer(',
+        '.min(',
+        '.max(',
+        '.greater(',
+        '.custom(',
+        '.unknown(',
+      ],
+      ['.custom(', 'validateWithJoi('],
+    ),
   ];
 
   const minScore = Math.min(...drafts.map((d) => d.rawScore));
@@ -333,7 +374,7 @@ export default function ValidationAnalysis() {
   const zodFlowSteps = [
     'TEST_CASES are created as unknown inputs in src/data/testCases.ts.',
     'App passes TEST_CASES into ZodValidationDemo when the Zod tab is selected.',
-    'slaughterRecordSchema defines runtime constraints for every field in src/schemas/slaughterRecordSchema.ts.',
+    'slaughterRecordSchema defines runtime constraints for every field in src/schemas/slaughterRecordZod.ts.',
     'validateWithZod calls slaughterRecordSchema.safeParse(data) for each case.',
     'On failure, Zod issues are mapped to field: message strings for display.',
     'UI compares actual result against expectValid and labels each case as caught or missed.',
@@ -395,6 +436,14 @@ export default function ValidationAnalysis() {
           {
             name: 'Typanion',
             run: (input) => validateWithTypanion(input),
+          },
+          {
+            name: 'AJV',
+            run: (input) => validateWithAjv(input),
+          },
+          {
+            name: 'Joi',
+            run: (input) => validateWithJoi(input),
           },
         ];
 

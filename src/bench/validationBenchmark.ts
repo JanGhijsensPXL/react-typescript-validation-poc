@@ -2,10 +2,12 @@ import { as } from 'typanion';
 import { validate } from 'superstruct';
 import { validateWithTypeScriptOnly } from '../components/TypeScriptOnlyDemo';
 import { VALID_RECORD } from '../data/testCases';
-import { slaughterRecordSchema } from '../schemas/slaughterRecordSchema';
+import { slaughterRecordSchema } from '../schemas/slaughterRecordZod';
 import { slaughterRecordSuperstructSchema } from '../schemas/slaughterRecordSuperstruct';
 import { slaughterRecordTypanionSchema } from '../schemas/slaughterRecordTypanion';
 import { slaughterRecordYupSchema, validateWithYup } from '../schemas/slaughterRecordYup';
+import { validateWithAjv } from '../schemas/slaughterRecordAjv';
+import { validateWithJoi } from '../schemas/slaughterRecordJoi';
 
 export type BenchmarkRow = {
   validator: string;
@@ -201,6 +203,14 @@ function getValidators(mode: BenchmarkMode): Validator[] {
         label: 'Typanion',
         run: (input) => slaughterRecordTypanionSchema(input),
       },
+      {
+        label: 'AJV',
+        run: (input) => validateWithAjv(input).passed,
+      },
+      {
+        label: 'Joi',
+        run: (input) => validateWithJoi(input).passed,
+      },
     ];
   }
 
@@ -224,6 +234,14 @@ function getValidators(mode: BenchmarkMode): Validator[] {
     {
       label: 'Typanion',
       run: (input) => !as(input, slaughterRecordTypanionSchema, { errors: true, throw: false }).errors,
+    },
+    {
+      label: 'AJV',
+      run: (input) => validateWithAjv(input).passed,
+    },
+    {
+      label: 'Joi',
+      run: (input) => validateWithJoi(input).passed,
     },
   ];
 }

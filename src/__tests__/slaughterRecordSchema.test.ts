@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { slaughterRecordSchema } from '../schemas/slaughterRecordSchema';
+import { slaughterRecordSchema } from '../schemas/slaughterRecordZod';
 import { VALID_RECORD, TEST_CASES } from '../data/testCases';
 
 describe('slaughterRecordSchema', () => {

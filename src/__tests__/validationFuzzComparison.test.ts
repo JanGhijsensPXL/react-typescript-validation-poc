@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { validateWithTypeScriptOnly } from '../components/TypeScriptOnlyDemo';
-import { slaughterRecordSchema } from '../schemas/slaughterRecordSchema';
+import { slaughterRecordSchema } from '../schemas/slaughterRecordZod';
 import { validateWithSuperstruct } from '../schemas/slaughterRecordSuperstruct';
 import { validateWithTypanion } from '../schemas/slaughterRecordTypanion';
 import { validateWithYup } from '../schemas/slaughterRecordYup';
+import { validateWithAjv } from '../schemas/slaughterRecordAjv';
+import { validateWithJoi } from '../schemas/slaughterRecordJoi';
 import { VALID_RECORD } from '../data/testCases';
 
 type GeneratedCase = {
@@ -100,12 +102,16 @@ describe('fuzz comparison across validators', () => {
     const superstruct = computeMismatchCount(cases, (input) => validateWithSuperstruct(input).passed);
     const yup = computeMismatchCount(cases, (input) => validateWithYup(input).passed);
     const typanion = computeMismatchCount(cases, (input) => validateWithTypanion(input).passed);
+    const ajv = computeMismatchCount(cases, (input) => validateWithAjv(input).passed);
+    const joi = computeMismatchCount(cases, (input) => validateWithJoi(input).passed);
     const typeScriptOnly = computeMismatchCount(cases, (input) => validateWithTypeScriptOnly(input).passed);
 
     expect(zod.mismatches).toBe(0);
     expect(superstruct.mismatches).toBe(0);
     expect(yup.mismatches).toBe(0);
     expect(typanion.mismatches).toBe(0);
+    expect(ajv.mismatches).toBe(0);
+    expect(joi.mismatches).toBe(0);
 
     // TypeScript-only validation should miss invalid values in mixed random payloads.
     expect(typeScriptOnly.falseAccepts).toBeGreaterThan(0);
@@ -123,11 +129,15 @@ describe('fuzz comparison across validators', () => {
     const superstruct = computeMismatchCount(cases, (input) => validateWithSuperstruct(input).passed);
     const yup = computeMismatchCount(cases, (input) => validateWithYup(input).passed);
     const typanion = computeMismatchCount(cases, (input) => validateWithTypanion(input).passed);
+    const ajv = computeMismatchCount(cases, (input) => validateWithAjv(input).passed);
+    const joi = computeMismatchCount(cases, (input) => validateWithJoi(input).passed);
 
     // All runtime validators are strict on extra keys in the current setup.
     expect(zod.falseAccepts).toBe(0);
     expect(superstruct.falseAccepts).toBe(0);
     expect(yup.falseAccepts).toBe(0);
     expect(typanion.falseAccepts).toBe(0);
+    expect(ajv.falseAccepts).toBe(0);
+    expect(joi.falseAccepts).toBe(0);
   });
 });
