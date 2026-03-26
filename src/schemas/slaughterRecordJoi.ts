@@ -1,7 +1,9 @@
 import Joi from 'joi';
 
+const EAR_TAG_ID_PATTERN = /^SL-\d{4}-\d{3,6}$/;
+
 export const slaughterRecordJoiSchema = Joi.object({
-  id: Joi.string().min(1).required(),
+  id: Joi.string().pattern(EAR_TAG_ID_PATTERN).required(),
   herderName: Joi.string().min(2).max(100).required(),
   animalSpecies: Joi.string().valid('reindeer', 'elk', 'moose').required(),
   slaughterDate: Joi.string()
@@ -10,6 +12,14 @@ export const slaughterRecordJoiSchema = Joi.object({
       if (Number.isNaN(Date.parse(value))) {
         return helpers.error('date.invalid');
       }
+
+      const date = new Date(`${value}T00:00:00Z`);
+      const now = new Date();
+      const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+      if (date.getTime() > todayUtc) {
+        return helpers.error('date.future');
+      }
+
       return value;
     }, 'calendar date')
     .required(),
@@ -21,6 +31,7 @@ export const slaughterRecordJoiSchema = Joi.object({
   .unknown(false)
   .messages({
     'date.invalid': 'Date must be a valid calendar date',
+    'date.future': 'Date cannot be in the future',
   });
 
 export function validateWithJoi(data: unknown): { passed: boolean; errors: string[] } {

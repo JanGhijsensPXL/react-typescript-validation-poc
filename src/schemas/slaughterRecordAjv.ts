@@ -6,6 +6,8 @@ type ValidationResult = {
   errors: string[];
 };
 
+const EAR_TAG_ID_PATTERN = '^SL-\\d{4}-\\d{3,6}$';
+
 const slaughterRecordAjvSchema: JSONSchemaType<SlaughterRecord> = {
   type: 'object',
   additionalProperties: false,
@@ -20,7 +22,7 @@ const slaughterRecordAjvSchema: JSONSchemaType<SlaughterRecord> = {
     'veterinarianApproved',
   ],
   properties: {
-    id: { type: 'string', minLength: 1 },
+    id: { type: 'string', pattern: EAR_TAG_ID_PATTERN },
     herderName: { type: 'string', minLength: 2, maxLength: 100 },
     animalSpecies: {
       type: 'string',
@@ -42,6 +44,13 @@ const validateRecord = ajv.compile(slaughterRecordAjvSchema);
 
 function isValidCalendarDate(value: string): boolean {
   return !Number.isNaN(Date.parse(value));
+}
+
+function isNotFutureDate(value: string): boolean {
+  const date = new Date(`${value}T00:00:00Z`);
+  const now = new Date();
+  const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  return date.getTime() <= todayUtc;
 }
 
 function pathFromError(error: ErrorObject): string {
@@ -81,6 +90,13 @@ export function validateWithAjv(data: unknown): ValidationResult {
     return {
       passed: false,
       errors: ['slaughterDate: Date must be a valid calendar date'],
+    };
+  }
+
+  if (!isNotFutureDate(data.slaughterDate)) {
+    return {
+      passed: false,
+      errors: ['slaughterDate: Date cannot be in the future'],
     };
   }
 

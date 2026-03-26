@@ -277,19 +277,21 @@ function toSummaryRows(validRows: BenchmarkRow[], invalidRows: BenchmarkRow[]): 
 }
 
 function makeDiagnosticInvalid(index: number): unknown {
-  const mod = index % 12;
+  const mod = index % 14;
 
   if (mod === 0) return { ...VALID_RECORD, id: '' };
   if (mod === 1) return { ...VALID_RECORD, herderName: '' };
   if (mod === 2) return { ...VALID_RECORD, animalSpecies: 'pig' };
   if (mod === 3) return { ...VALID_RECORD, slaughterDate: '15-11-2024' };
   if (mod === 4) return { ...VALID_RECORD, animalCount: -1 };
-  if (mod === 5) return { ...VALID_RECORD, totalWeightKg: 0 };
-  if (mod === 6) return { ...VALID_RECORD, slaughterhouseId: '' };
-  if (mod === 7) return { ...VALID_RECORD, veterinarianApproved: 'true' };
-  if (mod === 8) return { ...VALID_RECORD, animalCount: 12.5 };
-  if (mod === 9) return { ...VALID_RECORD, extraField: 'unexpected' };
-  if (mod === 10) return { ...VALID_RECORD, herderName: '', animalCount: -1 };
+  if (mod === 5) return { ...VALID_RECORD, slaughterDate: '2099-01-01' };
+  if (mod === 6) return { ...VALID_RECORD, id: 'TAG-24-A7' };
+  if (mod === 7) return { ...VALID_RECORD, totalWeightKg: 0 };
+  if (mod === 8) return { ...VALID_RECORD, slaughterhouseId: '' };
+  if (mod === 9) return { ...VALID_RECORD, veterinarianApproved: 'true' };
+  if (mod === 10) return { ...VALID_RECORD, animalCount: 12.5 };
+  if (mod === 11) return { ...VALID_RECORD, extraField: 'unexpected' };
+  if (mod === 12) return { ...VALID_RECORD, herderName: '', animalCount: -1 };
   return { ...VALID_RECORD, slaughterDate: '2024-13-99', totalWeightKg: 0 };
 }
 

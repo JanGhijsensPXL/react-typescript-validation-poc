@@ -1,0 +1,57 @@
+caseLabel,caseDescription,expectedValid,library,passed,caughtError,missedError,falseReject,avgDurationMs,avgDurationUs,repetitions,errorCount,errorMessages
+Valid record,"A complete, properly formatted slaughter record.",true,TypeScript only,true,false,false,false,0.002232,2.232,25,0,
+Valid record,"A complete, properly formatted slaughter record.",true,Zod,true,false,false,false,0.041176,41.176,25,0,
+Valid record,"A complete, properly formatted slaughter record.",true,Superstruct,true,false,false,false,0.033208,33.208,25,0,
+Valid record,"A complete, properly formatted slaughter record.",true,Yup,true,false,false,false,0.058960,58.960,25,0,
+Valid record,"A complete, properly formatted slaughter record.",true,Typanion,true,false,false,false,0.023400,23.400,25,0,
+Valid record,"A complete, properly formatted slaughter record.",true,AJV,true,false,false,false,0.012448,12.448,25,0,
+Valid record,"A complete, properly formatted slaughter record.",true,Joi,true,false,false,false,0.030936,30.936,25,0,
+Missing herder name,The herder name field is an empty string.,false,TypeScript only,true,false,true,false,0.000304,0.304,25,0,
+Missing herder name,The herder name field is an empty string.,false,Zod,false,true,false,false,0.022464,22.464,25,1,herderName: Herder name must be at least 2 characters
+Missing herder name,The herder name field is an empty string.,false,Superstruct,false,true,false,false,0.021912,21.912,25,1,herderName: Expected a string with a length between `2` and `100` but received one with a length of `0`
+Missing herder name,The herder name field is an empty string.,false,Yup,false,true,false,false,0.094992,94.992,25,2,herderName: Herder name is required | herderName: Herder name must be at least 2 characters
+Missing herder name,The herder name field is an empty string.,false,Typanion,false,true,false,false,0.007180,7.180,25,1,.herderName: Expected to have a length of at least 2 elements (got 0)
+Missing herder name,The herder name field is an empty string.,false,AJV,false,true,false,false,0.003196,3.196,25,1,herderName: must NOT have fewer than 2 characters
+Missing herder name,The herder name field is an empty string.,false,Joi,false,true,false,false,0.039092,39.092,25,1,"herderName: ""herderName"" is not allowed to be empty"
+Invalid species,"""pig"" is not an accepted animal species.",false,TypeScript only,true,false,true,false,0.000696,0.696,25,0,
+Invalid species,"""pig"" is not an accepted animal species.",false,Zod,false,true,false,false,0.015704,15.704,25,1,"animalSpecies: Animal species must be one of: reindeer, elk, moose"
+Invalid species,"""pig"" is not an accepted animal species.",false,Superstruct,false,true,false,false,0.029492,29.492,25,1,"animalSpecies: Expected one of `""reindeer"",""elk"",""moose""`, but received: ""pig"""
+Invalid species,"""pig"" is not an accepted animal species.",false,Yup,false,true,false,false,0.066808,66.808,25,1,"animalSpecies: Animal species must be one of: reindeer, elk, moose"
+Invalid species,"""pig"" is not an accepted animal species.",false,Typanion,false,true,false,false,0.008088,8.088,25,1,".animalSpecies: Expected one of ""reindeer"", ""elk"", or ""moose"" (got ""pig"")"
+Invalid species,"""pig"" is not an accepted animal species.",false,AJV,false,true,false,false,0.001320,1.320,25,1,animalSpecies: must be equal to one of the allowed values
+Invalid species,"""pig"" is not an accepted animal species.",false,Joi,false,true,false,false,0.030060,30.060,25,1,"animalSpecies: ""animalSpecies"" must be one of [reindeer, elk, moose]"
+Negative animal count,"Animal count is -5, which is not physically possible.",false,TypeScript only,true,false,true,false,0.000220,0.220,25,0,
+Negative animal count,"Animal count is -5, which is not physically possible.",false,Zod,false,true,false,false,0.013396,13.396,25,1,animalCount: Animal count must be at least 1
+Negative animal count,"Animal count is -5, which is not physically possible.",false,Superstruct,false,true,false,false,0.018500,18.500,25,1,animalCount: Expected a integer greater than or equal to 1 but received `-5`
+Negative animal count,"Animal count is -5, which is not physically possible.",false,Yup,false,true,false,false,0.062620,62.620,25,1,animalCount: Animal count must be at least 1
+Negative animal count,"Animal count is -5, which is not physically possible.",false,Typanion,false,true,false,false,0.005880,5.880,25,1,.animalCount: Expected to be at least 1 (got -5)
+Negative animal count,"Animal count is -5, which is not physically possible.",false,AJV,false,true,false,false,0.001248,1.248,25,1,animalCount: must be >= 1
+Negative animal count,"Animal count is -5, which is not physically possible.",false,Joi,false,true,false,false,0.018900,18.900,25,1,"animalCount: ""animalCount"" must be greater than or equal to 1"
+Zero total weight,"Total weight is 0 kg, which violates the positive constraint.",false,TypeScript only,true,false,true,false,0.000276,0.276,25,0,
+Zero total weight,"Total weight is 0 kg, which violates the positive constraint.",false,Zod,false,true,false,false,0.012700,12.700,25,1,totalWeightKg: Total weight must be greater than 0
+Zero total weight,"Total weight is 0 kg, which violates the positive constraint.",false,Superstruct,false,true,false,false,0.016908,16.908,25,1,"totalWeightKg: Expected a value of type `number`, but received: `0`"
+Zero total weight,"Total weight is 0 kg, which violates the positive constraint.",false,Yup,false,true,false,false,0.074200,74.200,25,1,totalWeightKg: Total weight must be greater than 0
+Zero total weight,"Total weight is 0 kg, which violates the positive constraint.",false,Typanion,false,true,false,false,0.004040,4.040,25,1,.totalWeightKg: Value must be greater than 0
+Zero total weight,"Total weight is 0 kg, which violates the positive constraint.",false,AJV,false,true,false,false,0.001152,1.152,25,1,totalWeightKg: must be > 0
+Zero total weight,"Total weight is 0 kg, which violates the positive constraint.",false,Joi,false,true,false,false,0.017200,17.200,25,1,"totalWeightKg: ""totalWeightKg"" must be greater than 0"
+Malformed date,"""15-11-2024"" does not match the required YYYY-MM-DD format.",false,TypeScript only,true,false,true,false,0.000216,0.216,25,0,
+Malformed date,"""15-11-2024"" does not match the required YYYY-MM-DD format.",false,Zod,false,true,false,false,0.016252,16.252,25,2,slaughterDate: Date must be in YYYY-MM-DD format | slaughterDate: Date must be a valid calendar date
+Malformed date,"""15-11-2024"" does not match the required YYYY-MM-DD format.",false,Superstruct,false,true,false,false,0.015036,15.036,25,2,"slaughterDate: Expected a string matching `/^\d{4}-\d{2}-\d{2}$/` but received ""15-11-2024"" | slaughterDate: Date must be a valid calendar date"
+Malformed date,"""15-11-2024"" does not match the required YYYY-MM-DD format.",false,Yup,false,true,false,false,0.089200,89.200,25,2,slaughterDate: Date must be in YYYY-MM-DD format | slaughterDate: Date must be a valid calendar date
+Malformed date,"""15-11-2024"" does not match the required YYYY-MM-DD format.",false,Typanion,false,true,false,false,0.003748,3.748,25,1,".slaughterDate: Expected to match the pattern /^\d{4}-\d{2}-\d{2}$/ (got ""15-11-2024"")"
+Malformed date,"""15-11-2024"" does not match the required YYYY-MM-DD format.",false,AJV,false,true,false,false,0.001156,1.156,25,1,"slaughterDate: must match pattern ""^\d{4}-\d{2}-\d{2}$"""
+Malformed date,"""15-11-2024"" does not match the required YYYY-MM-DD format.",false,Joi,false,true,false,false,0.014280,14.280,25,2,"slaughterDate: ""slaughterDate"" with value ""15-11-2024"" fails to match the required pattern: /^\d{4}-\d{2}-\d{2}$/ | slaughterDate: Date must be a valid calendar date"
+Missing veterinarian approval (string instead of boolean),"TypeScript types cannot catch ""true"" (string) passed as veterinarianApproved at runtime.",false,TypeScript only,true,false,true,false,0.000472,0.472,25,0,
+Missing veterinarian approval (string instead of boolean),"TypeScript types cannot catch ""true"" (string) passed as veterinarianApproved at runtime.",false,Zod,false,true,false,false,0.011796,11.796,25,1,veterinarianApproved: Veterinarian approval must be true or false
+Missing veterinarian approval (string instead of boolean),"TypeScript types cannot catch ""true"" (string) passed as veterinarianApproved at runtime.",false,Superstruct,false,true,false,false,0.012056,12.056,25,1,"veterinarianApproved: Expected a value of type `boolean`, but received: `""true""`"
+Missing veterinarian approval (string instead of boolean),"TypeScript types cannot catch ""true"" (string) passed as veterinarianApproved at runtime.",false,Yup,false,true,false,false,0.061336,61.336,25,1,veterinarianApproved: Veterinarian approval must be true or false
+Missing veterinarian approval (string instead of boolean),"TypeScript types cannot catch ""true"" (string) passed as veterinarianApproved at runtime.",false,Typanion,false,true,false,false,0.002644,2.644,25,1,".veterinarianApproved: Expected a valid enumeration value (got ""true"")"
+Missing veterinarian approval (string instead of boolean),"TypeScript types cannot catch ""true"" (string) passed as veterinarianApproved at runtime.",false,AJV,false,true,false,false,0.001112,1.112,25,1,veterinarianApproved: must be boolean
+Missing veterinarian approval (string instead of boolean),"TypeScript types cannot catch ""true"" (string) passed as veterinarianApproved at runtime.",false,Joi,false,true,false,false,0.011640,11.640,25,1,"veterinarianApproved: ""veterinarianApproved"" must be a boolean"
+Non-integer animal count,12.5 animals is not a whole number.,false,TypeScript only,true,false,true,false,0.000208,0.208,25,0,
+Non-integer animal count,12.5 animals is not a whole number.,false,Zod,false,true,false,false,0.011284,11.284,25,1,animalCount: Animal count must be a whole number
+Non-integer animal count,12.5 animals is not a whole number.,false,Superstruct,false,true,false,false,0.023284,23.284,25,1,"animalCount: Expected an integer, but received: 12.5"
+Non-integer animal count,12.5 animals is not a whole number.,false,Yup,false,true,false,false,0.055072,55.072,25,1,animalCount: Animal count must be a whole number
+Non-integer animal count,12.5 animals is not a whole number.,false,Typanion,false,true,false,false,0.002072,2.072,25,1,.animalCount: Expected to be an integer (got 12.5)
+Non-integer animal count,12.5 animals is not a whole number.,false,AJV,false,true,false,false,0.002080,2.080,25,1,animalCount: must be integer
+Non-integer animal count,12.5 animals is not a whole number.,false,Joi,false,true,false,false,0.012948,12.948,25,1,"animalCount: ""animalCount"" must be an integer"

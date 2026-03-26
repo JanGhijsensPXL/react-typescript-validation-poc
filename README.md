@@ -35,8 +35,36 @@ npm run test
 # Benchmarks
 npm run bench:validation
 
+# Structured per-case report (JSON + CSV)
+npm run report:validation
+
 # Production build
 npm run build
+```
+
+## Structured Test Report Export
+
+To produce thesis-ready tables from the same validation cases used in the UI, run:
+
+```bash
+npm run report:validation
+```
+
+This generates two export files in `reports/`:
+- `validation-case-report.json`
+- `validation-case-report.csv`
+
+Each row is one test case x one library and includes:
+- case label and description
+- expected validity and actual pass/fail
+- whether the library caught or missed the invalid case
+- error count and full error messages
+- average duration per case (`avgDurationMs` and `avgDurationUs`)
+
+You can increase timing stability by repeating each case more times:
+
+```bash
+npx tsx scripts/validation-case-report.ts --reps=100
 ```
 
 ## Where Things Live

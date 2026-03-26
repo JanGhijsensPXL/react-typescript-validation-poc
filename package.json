@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "bench:validation": "tsx scripts/validation-benchmark.ts"
+    "bench:validation": "tsx scripts/validation-benchmark.ts",
+    "report:validation": "tsx scripts/validation-case-report.ts"
   },
   "dependencies": {
     "ajv": "^8.18.0",

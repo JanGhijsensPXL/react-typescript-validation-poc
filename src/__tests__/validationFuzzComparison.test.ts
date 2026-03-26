@@ -140,4 +140,44 @@ describe('fuzz comparison across validators', () => {
     expect(ajv.falseAccepts).toBe(0);
     expect(joi.falseAccepts).toBe(0);
   });
+
+  it('catches domain-specific invalid submissions beyond random fuzz inputs', () => {
+    const domainCases: GeneratedCase[] = [
+      {
+        input: { ...VALID_RECORD, totalWeightKg: 0 },
+        expectedValid: false,
+      },
+      {
+        input: { ...VALID_RECORD, animalCount: -2 },
+        expectedValid: false,
+      },
+      {
+        input: { ...VALID_RECORD, slaughterDate: '2099-01-01' },
+        expectedValid: false,
+      },
+      {
+        input: { ...VALID_RECORD, id: 'TAG-24-A7' },
+        expectedValid: false,
+      },
+    ];
+
+    const zod = computeMismatchCount(domainCases, (input) => slaughterRecordSchema.safeParse(input).success);
+    const superstruct = computeMismatchCount(domainCases, (input) => validateWithSuperstruct(input).passed);
+    const yup = computeMismatchCount(domainCases, (input) => validateWithYup(input).passed);
+    const typanion = computeMismatchCount(domainCases, (input) => validateWithTypanion(input).passed);
+    const ajv = computeMismatchCount(domainCases, (input) => validateWithAjv(input).passed);
+    const joi = computeMismatchCount(domainCases, (input) => validateWithJoi(input).passed);
+    const typeScriptOnly = computeMismatchCount(domainCases, (input) => validateWithTypeScriptOnly(input).passed);
+
+    expect(zod.falseAccepts).toBe(0);
+    expect(superstruct.falseAccepts).toBe(0);
+    expect(yup.falseAccepts).toBe(0);
+    expect(typanion.falseAccepts).toBe(0);
+    expect(ajv.falseAccepts).toBe(0);
+    expect(joi.falseAccepts).toBe(0);
+
+    // Compile-time-only baseline still accepts all complete-but-invalid domain payloads.
+    expect(typeScriptOnly.falseAccepts).toBe(domainCases.length);
+    expect(typeScriptOnly.falseRejects).toBe(0);
+  });
 });

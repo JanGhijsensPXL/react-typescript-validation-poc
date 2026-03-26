@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { validateWithTypeScriptOnly } from '../components/TypeScriptOnlyDemo';
 import { VALID_RECORD, TEST_CASES } from '../data/testCases';
+import type { SlaughterRecord } from '../types/slaughterRecord';
+import { slaughterRecordSchema } from '../schemas/slaughterRecordZod';
 
 describe('validateWithTypeScriptOnly', () => {
   it('accepts a fully valid slaughter record', () => {
@@ -83,5 +85,66 @@ describe('TEST_CASES dataset through TypeScript-only validation', () => {
         expect(typeof result.passed).toBe('boolean');
       }
     }
+  });
+});
+
+function submitFormWithoutRuntimeValidation(formData: unknown): {
+  submitted: boolean;
+  storedRecord: SlaughterRecord;
+} {
+  // Simulates a submit handler that relies only on compile-time typing.
+  const payload = formData as SlaughterRecord;
+  return {
+    submitted: true,
+    storedRecord: payload,
+  };
+}
+
+function submitFormWithRuntimeValidation(formData: unknown): {
+  submitted: boolean;
+  errorFields: string[];
+} {
+  const result = slaughterRecordSchema.safeParse(formData);
+  if (!result.success) {
+    return {
+      submitted: false,
+      errorFields: result.error.issues.map((issue) => issue.path.join('.') || 'root'),
+    };
+  }
+
+  return { submitted: true, errorFields: [] };
+}
+
+describe('baseline comparison: compile-time only vs runtime validation on submit', () => {
+  it('shows invalid form data can be submitted when runtime validation is bypassed', () => {
+    const invalidButCompletePayload = {
+      ...VALID_RECORD,
+      herderName: '',
+      animalSpecies: 'pig',
+      slaughterDate: '15-11-2024',
+      animalCount: -3,
+      totalWeightKg: 0,
+      veterinarianApproved: 'true',
+    };
+
+    const typeScriptOnlySubmission = submitFormWithoutRuntimeValidation(invalidButCompletePayload);
+    expect(typeScriptOnlySubmission.submitted).toBe(true);
+
+    // The invalid values survive and would be sent/stored as-is.
+    expect(typeScriptOnlySubmission.storedRecord.herderName).toBe('');
+    expect(typeScriptOnlySubmission.storedRecord.animalSpecies).toBe('pig');
+    expect(typeScriptOnlySubmission.storedRecord.slaughterDate).toBe('15-11-2024');
+    expect(typeScriptOnlySubmission.storedRecord.animalCount).toBe(-3);
+    expect(typeScriptOnlySubmission.storedRecord.totalWeightKg).toBe(0);
+    expect(typeScriptOnlySubmission.storedRecord.veterinarianApproved).toBe('true');
+
+    const runtimeValidatedSubmission = submitFormWithRuntimeValidation(invalidButCompletePayload);
+    expect(runtimeValidatedSubmission.submitted).toBe(false);
+    expect(runtimeValidatedSubmission.errorFields).toContain('herderName');
+    expect(runtimeValidatedSubmission.errorFields).toContain('animalSpecies');
+    expect(runtimeValidatedSubmission.errorFields).toContain('slaughterDate');
+    expect(runtimeValidatedSubmission.errorFields).toContain('animalCount');
+    expect(runtimeValidatedSubmission.errorFields).toContain('totalWeightKg');
+    expect(runtimeValidatedSubmission.errorFields).toContain('veterinarianApproved');
   });
 });

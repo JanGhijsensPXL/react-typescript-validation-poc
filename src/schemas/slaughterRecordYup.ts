@@ -1,8 +1,13 @@
 import * as yup from 'yup';
 
+const EAR_TAG_ID_PATTERN = /^SL-\d{4}-\d{3,6}$/;
+
 export const slaughterRecordYupSchema = yup
   .object({
-    id: yup.string().required('ID is required').min(1, 'ID is required'),
+    id: yup
+      .string()
+      .required('ID is required')
+      .matches(EAR_TAG_ID_PATTERN, 'ID must match ear-tag format SL-YYYY-NNN'),
     herderName: yup
       .string()
       .required('Herder name is required')
@@ -21,6 +26,16 @@ export const slaughterRecordYupSchema = yup
           return false;
         }
         return !Number.isNaN(Date.parse(val));
+      })
+      .test('is-not-future-date', 'Date cannot be in the future', (val) => {
+        if (!val) {
+          return false;
+        }
+
+        const date = new Date(`${val}T00:00:00Z`);
+        const now = new Date();
+        const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+        return date.getTime() <= todayUtc;
       }),
     animalCount: yup
       .number()

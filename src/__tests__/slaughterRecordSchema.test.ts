@@ -63,6 +63,22 @@ describe('slaughterRecordSchema', () => {
     expect(result.success).toBe(false);
   });
 
+  it('rejects a slaughter date in the future', () => {
+    const result = slaughterRecordSchema.safeParse({
+      ...VALID_RECORD,
+      slaughterDate: '2099-01-01',
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it('rejects IDs that do not match ear-tag format', () => {
+    const result = slaughterRecordSchema.safeParse({
+      ...VALID_RECORD,
+      id: 'TAG-24-A7',
+    });
+    expect(result.success).toBe(false);
+  });
+
   it('rejects an invalid calendar date', () => {
     const result = slaughterRecordSchema.safeParse({
       ...VALID_RECORD,

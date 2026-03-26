@@ -56,6 +56,18 @@ export const TEST_CASES: TestCase[] = [
     expectValid: false,
   },
   {
+    label: 'Future slaughter date',
+    description: 'A slaughter date in the future should be rejected in domain validation.',
+    data: { ...VALID_RECORD, slaughterDate: '2099-01-01' },
+    expectValid: false,
+  },
+  {
+    label: 'Wrong ear-tag / record ID format',
+    description: 'Record ID must follow ear-tag format SL-YYYY-NNN.',
+    data: { ...VALID_RECORD, id: 'TAG-24-A7' },
+    expectValid: false,
+  },
+  {
     label: 'Missing veterinarian approval (string instead of boolean)',
     description:
       'TypeScript types cannot catch "true" (string) passed as veterinarianApproved at runtime.',

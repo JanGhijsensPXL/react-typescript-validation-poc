@@ -1,0 +1,1005 @@
+{
+  "generatedAt": "2026-03-26T08:06:59.954Z",
+  "repetitionsPerCase": 25,
+  "totals": {
+    "cases": 8,
+    "libraries": 7,
+    "rows": 56
+  },
+  "rows": [
+    {
+      "caseLabel": "Valid record",
+      "caseDescription": "A complete, properly formatted slaughter record.",
+      "expectedValid": true,
+      "library": "TypeScript only",
+      "passed": true,
+      "caughtError": false,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0022320000000013353,
+      "avgDurationUs": 2.232000000001335,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Valid record",
+      "caseDescription": "A complete, properly formatted slaughter record.",
+      "expectedValid": true,
+      "library": "Zod",
+      "passed": true,
+      "caughtError": false,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.041176000000000386,
+      "avgDurationUs": 41.176000000000386,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Valid record",
+      "caseDescription": "A complete, properly formatted slaughter record.",
+      "expectedValid": true,
+      "library": "Superstruct",
+      "passed": true,
+      "caughtError": false,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0332080000000019,
+      "avgDurationUs": 33.2080000000019,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Valid record",
+      "caseDescription": "A complete, properly formatted slaughter record.",
+      "expectedValid": true,
+      "library": "Yup",
+      "passed": true,
+      "caughtError": false,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.05895999999999958,
+      "avgDurationUs": 58.95999999999958,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Valid record",
+      "caseDescription": "A complete, properly formatted slaughter record.",
+      "expectedValid": true,
+      "library": "Typanion",
+      "passed": true,
+      "caughtError": false,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.023399999999999182,
+      "avgDurationUs": 23.39999999999918,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Valid record",
+      "caseDescription": "A complete, properly formatted slaughter record.",
+      "expectedValid": true,
+      "library": "AJV",
+      "passed": true,
+      "caughtError": false,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.012447999999999411,
+      "avgDurationUs": 12.44799999999941,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Valid record",
+      "caseDescription": "A complete, properly formatted slaughter record.",
+      "expectedValid": true,
+      "library": "Joi",
+      "passed": true,
+      "caughtError": false,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.03093599999999924,
+      "avgDurationUs": 30.93599999999924,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Missing herder name",
+      "caseDescription": "The herder name field is an empty string.",
+      "expectedValid": false,
+      "library": "TypeScript only",
+      "passed": true,
+      "caughtError": false,
+      "missedError": true,
+      "falseReject": false,
+      "avgDurationMs": 0.00030400000000099683,
+      "avgDurationUs": 0.3040000000009968,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Missing herder name",
+      "caseDescription": "The herder name field is an empty string.",
+      "expectedValid": false,
+      "library": "Zod",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.022463999999999942,
+      "avgDurationUs": 22.463999999999942,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "herderName: Herder name must be at least 2 characters"
+      ]
+    },
+    {
+      "caseLabel": "Missing herder name",
+      "caseDescription": "The herder name field is an empty string.",
+      "expectedValid": false,
+      "library": "Superstruct",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.021911999999999807,
+      "avgDurationUs": 21.911999999999807,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "herderName: Expected a string with a length between `2` and `100` but received one with a length of `0`"
+      ]
+    },
+    {
+      "caseLabel": "Missing herder name",
+      "caseDescription": "The herder name field is an empty string.",
+      "expectedValid": false,
+      "library": "Yup",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.09499199999999973,
+      "avgDurationUs": 94.99199999999973,
+      "repetitions": 25,
+      "errorCount": 2,
+      "errorMessages": [
+        "herderName: Herder name is required",
+        "herderName: Herder name must be at least 2 characters"
+      ]
+    },
+    {
+      "caseLabel": "Missing herder name",
+      "caseDescription": "The herder name field is an empty string.",
+      "expectedValid": false,
+      "library": "Typanion",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.007179999999998472,
+      "avgDurationUs": 7.179999999998472,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        ".herderName: Expected to have a length of at least 2 elements (got 0)"
+      ]
+    },
+    {
+      "caseLabel": "Missing herder name",
+      "caseDescription": "The herder name field is an empty string.",
+      "expectedValid": false,
+      "library": "AJV",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0031960000000003674,
+      "avgDurationUs": 3.1960000000003674,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "herderName: must NOT have fewer than 2 characters"
+      ]
+    },
+    {
+      "caseLabel": "Missing herder name",
+      "caseDescription": "The herder name field is an empty string.",
+      "expectedValid": false,
+      "library": "Joi",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.03909200000000055,
+      "avgDurationUs": 39.09200000000055,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "herderName: \"herderName\" is not allowed to be empty"
+      ]
+    },
+    {
+      "caseLabel": "Invalid species",
+      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "expectedValid": false,
+      "library": "TypeScript only",
+      "passed": true,
+      "caughtError": false,
+      "missedError": true,
+      "falseReject": false,
+      "avgDurationMs": 0.0006960000000003674,
+      "avgDurationUs": 0.6960000000003674,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Invalid species",
+      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "expectedValid": false,
+      "library": "Zod",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.015703999999998358,
+      "avgDurationUs": 15.703999999998357,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalSpecies: Animal species must be one of: reindeer, elk, moose"
+      ]
+    },
+    {
+      "caseLabel": "Invalid species",
+      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "expectedValid": false,
+      "library": "Superstruct",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.029492000000000188,
+      "avgDurationUs": 29.49200000000019,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalSpecies: Expected one of `\"reindeer\",\"elk\",\"moose\"`, but received: \"pig\""
+      ]
+    },
+    {
+      "caseLabel": "Invalid species",
+      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "expectedValid": false,
+      "library": "Yup",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.06680799999999863,
+      "avgDurationUs": 66.80799999999863,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalSpecies: Animal species must be one of: reindeer, elk, moose"
+      ]
+    },
+    {
+      "caseLabel": "Invalid species",
+      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "expectedValid": false,
+      "library": "Typanion",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.008088000000000192,
+      "avgDurationUs": 8.088000000000193,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        ".animalSpecies: Expected one of \"reindeer\", \"elk\", or \"moose\" (got \"pig\")"
+      ]
+    },
+    {
+      "caseLabel": "Invalid species",
+      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "expectedValid": false,
+      "library": "AJV",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0013200000000006184,
+      "avgDurationUs": 1.3200000000006185,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalSpecies: must be equal to one of the allowed values"
+      ]
+    },
+    {
+      "caseLabel": "Invalid species",
+      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "expectedValid": false,
+      "library": "Joi",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.030060000000000853,
+      "avgDurationUs": 30.060000000000855,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalSpecies: \"animalSpecies\" must be one of [reindeer, elk, moose]"
+      ]
+    },
+    {
+      "caseLabel": "Negative animal count",
+      "caseDescription": "Animal count is -5, which is not physically possible.",
+      "expectedValid": false,
+      "library": "TypeScript only",
+      "passed": true,
+      "caughtError": false,
+      "missedError": true,
+      "falseReject": false,
+      "avgDurationMs": 0.0002200000000016189,
+      "avgDurationUs": 0.2200000000016189,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Negative animal count",
+      "caseDescription": "Animal count is -5, which is not physically possible.",
+      "expectedValid": false,
+      "library": "Zod",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.013396000000000186,
+      "avgDurationUs": 13.396000000000186,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalCount: Animal count must be at least 1"
+      ]
+    },
+    {
+      "caseLabel": "Negative animal count",
+      "caseDescription": "Animal count is -5, which is not physically possible.",
+      "expectedValid": false,
+      "library": "Superstruct",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.018500000000001363,
+      "avgDurationUs": 18.500000000001364,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalCount: Expected a integer greater than or equal to 1 but received `-5`"
+      ]
+    },
+    {
+      "caseLabel": "Negative animal count",
+      "caseDescription": "Animal count is -5, which is not physically possible.",
+      "expectedValid": false,
+      "library": "Yup",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.06262000000000172,
+      "avgDurationUs": 62.62000000000172,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalCount: Animal count must be at least 1"
+      ]
+    },
+    {
+      "caseLabel": "Negative animal count",
+      "caseDescription": "Animal count is -5, which is not physically possible.",
+      "expectedValid": false,
+      "library": "Typanion",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.005879999999999655,
+      "avgDurationUs": 5.879999999999654,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        ".animalCount: Expected to be at least 1 (got -5)"
+      ]
+    },
+    {
+      "caseLabel": "Negative animal count",
+      "caseDescription": "Animal count is -5, which is not physically possible.",
+      "expectedValid": false,
+      "library": "AJV",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0012479999999982284,
+      "avgDurationUs": 1.2479999999982283,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalCount: must be >= 1"
+      ]
+    },
+    {
+      "caseLabel": "Negative animal count",
+      "caseDescription": "Animal count is -5, which is not physically possible.",
+      "expectedValid": false,
+      "library": "Joi",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.018900000000001,
+      "avgDurationUs": 18.900000000001,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalCount: \"animalCount\" must be greater than or equal to 1"
+      ]
+    },
+    {
+      "caseLabel": "Zero total weight",
+      "caseDescription": "Total weight is 0 kg, which violates the positive constraint.",
+      "expectedValid": false,
+      "library": "TypeScript only",
+      "passed": true,
+      "caughtError": false,
+      "missedError": true,
+      "falseReject": false,
+      "avgDurationMs": 0.0002759999999989304,
+      "avgDurationUs": 0.27599999999893043,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Zero total weight",
+      "caseDescription": "Total weight is 0 kg, which violates the positive constraint.",
+      "expectedValid": false,
+      "library": "Zod",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.012699999999999817,
+      "avgDurationUs": 12.699999999999818,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "totalWeightKg: Total weight must be greater than 0"
+      ]
+    },
+    {
+      "caseLabel": "Zero total weight",
+      "caseDescription": "Total weight is 0 kg, which violates the positive constraint.",
+      "expectedValid": false,
+      "library": "Superstruct",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.01690800000000081,
+      "avgDurationUs": 16.90800000000081,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "totalWeightKg: Expected a value of type `number`, but received: `0`"
+      ]
+    },
+    {
+      "caseLabel": "Zero total weight",
+      "caseDescription": "Total weight is 0 kg, which violates the positive constraint.",
+      "expectedValid": false,
+      "library": "Yup",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.07420000000000072,
+      "avgDurationUs": 74.20000000000073,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "totalWeightKg: Total weight must be greater than 0"
+      ]
+    },
+    {
+      "caseLabel": "Zero total weight",
+      "caseDescription": "Total weight is 0 kg, which violates the positive constraint.",
+      "expectedValid": false,
+      "library": "Typanion",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.004039999999999964,
+      "avgDurationUs": 4.039999999999964,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        ".totalWeightKg: Value must be greater than 0"
+      ]
+    },
+    {
+      "caseLabel": "Zero total weight",
+      "caseDescription": "Total weight is 0 kg, which violates the positive constraint.",
+      "expectedValid": false,
+      "library": "AJV",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.001151999999999589,
+      "avgDurationUs": 1.151999999999589,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "totalWeightKg: must be > 0"
+      ]
+    },
+    {
+      "caseLabel": "Zero total weight",
+      "caseDescription": "Total weight is 0 kg, which violates the positive constraint.",
+      "expectedValid": false,
+      "library": "Joi",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.017200000000000274,
+      "avgDurationUs": 17.200000000000273,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "totalWeightKg: \"totalWeightKg\" must be greater than 0"
+      ]
+    },
+    {
+      "caseLabel": "Malformed date",
+      "caseDescription": "\"15-11-2024\" does not match the required YYYY-MM-DD format.",
+      "expectedValid": false,
+      "library": "TypeScript only",
+      "passed": true,
+      "caughtError": false,
+      "missedError": true,
+      "falseReject": false,
+      "avgDurationMs": 0.00021600000000034924,
+      "avgDurationUs": 0.21600000000034925,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Malformed date",
+      "caseDescription": "\"15-11-2024\" does not match the required YYYY-MM-DD format.",
+      "expectedValid": false,
+      "library": "Zod",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0162519999999995,
+      "avgDurationUs": 16.251999999999498,
+      "repetitions": 25,
+      "errorCount": 2,
+      "errorMessages": [
+        "slaughterDate: Date must be in YYYY-MM-DD format",
+        "slaughterDate: Date must be a valid calendar date"
+      ]
+    },
+    {
+      "caseLabel": "Malformed date",
+      "caseDescription": "\"15-11-2024\" does not match the required YYYY-MM-DD format.",
+      "expectedValid": false,
+      "library": "Superstruct",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.015036000000000058,
+      "avgDurationUs": 15.036000000000058,
+      "repetitions": 25,
+      "errorCount": 2,
+      "errorMessages": [
+        "slaughterDate: Expected a string matching `/^\\d{4}-\\d{2}-\\d{2}$/` but received \"15-11-2024\"",
+        "slaughterDate: Date must be a valid calendar date"
+      ]
+    },
+    {
+      "caseLabel": "Malformed date",
+      "caseDescription": "\"15-11-2024\" does not match the required YYYY-MM-DD format.",
+      "expectedValid": false,
+      "library": "Yup",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.08919999999999845,
+      "avgDurationUs": 89.19999999999845,
+      "repetitions": 25,
+      "errorCount": 2,
+      "errorMessages": [
+        "slaughterDate: Date must be in YYYY-MM-DD format",
+        "slaughterDate: Date must be a valid calendar date"
+      ]
+    },
+    {
+      "caseLabel": "Malformed date",
+      "caseDescription": "\"15-11-2024\" does not match the required YYYY-MM-DD format.",
+      "expectedValid": false,
+      "library": "Typanion",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0037480000000005022,
+      "avgDurationUs": 3.748000000000502,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        ".slaughterDate: Expected to match the pattern /^\\d{4}-\\d{2}-\\d{2}$/ (got \"15-11-2024\")"
+      ]
+    },
+    {
+      "caseLabel": "Malformed date",
+      "caseDescription": "\"15-11-2024\" does not match the required YYYY-MM-DD format.",
+      "expectedValid": false,
+      "library": "AJV",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0011560000000008586,
+      "avgDurationUs": 1.1560000000008586,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "slaughterDate: must match pattern \"^\\d{4}-\\d{2}-\\d{2}$\""
+      ]
+    },
+    {
+      "caseLabel": "Malformed date",
+      "caseDescription": "\"15-11-2024\" does not match the required YYYY-MM-DD format.",
+      "expectedValid": false,
+      "library": "Joi",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.014279999999998835,
+      "avgDurationUs": 14.279999999998836,
+      "repetitions": 25,
+      "errorCount": 2,
+      "errorMessages": [
+        "slaughterDate: \"slaughterDate\" with value \"15-11-2024\" fails to match the required pattern: /^\\d{4}-\\d{2}-\\d{2}$/",
+        "slaughterDate: Date must be a valid calendar date"
+      ]
+    },
+    {
+      "caseLabel": "Missing veterinarian approval (string instead of boolean)",
+      "caseDescription": "TypeScript types cannot catch \"true\" (string) passed as veterinarianApproved at runtime.",
+      "expectedValid": false,
+      "library": "TypeScript only",
+      "passed": true,
+      "caughtError": false,
+      "missedError": true,
+      "falseReject": false,
+      "avgDurationMs": 0.0004719999999997526,
+      "avgDurationUs": 0.4719999999997526,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Missing veterinarian approval (string instead of boolean)",
+      "caseDescription": "TypeScript types cannot catch \"true\" (string) passed as veterinarianApproved at runtime.",
+      "expectedValid": false,
+      "library": "Zod",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.011795999999999368,
+      "avgDurationUs": 11.795999999999367,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "veterinarianApproved: Veterinarian approval must be true or false"
+      ]
+    },
+    {
+      "caseLabel": "Missing veterinarian approval (string instead of boolean)",
+      "caseDescription": "TypeScript types cannot catch \"true\" (string) passed as veterinarianApproved at runtime.",
+      "expectedValid": false,
+      "library": "Superstruct",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.01205600000000004,
+      "avgDurationUs": 12.05600000000004,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "veterinarianApproved: Expected a value of type `boolean`, but received: `\"true\"`"
+      ]
+    },
+    {
+      "caseLabel": "Missing veterinarian approval (string instead of boolean)",
+      "caseDescription": "TypeScript types cannot catch \"true\" (string) passed as veterinarianApproved at runtime.",
+      "expectedValid": false,
+      "library": "Yup",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.06133599999999888,
+      "avgDurationUs": 61.335999999998876,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "veterinarianApproved: Veterinarian approval must be true or false"
+      ]
+    },
+    {
+      "caseLabel": "Missing veterinarian approval (string instead of boolean)",
+      "caseDescription": "TypeScript types cannot catch \"true\" (string) passed as veterinarianApproved at runtime.",
+      "expectedValid": false,
+      "library": "Typanion",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.002644000000000233,
+      "avgDurationUs": 2.644000000000233,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        ".veterinarianApproved: Expected a valid enumeration value (got \"true\")"
+      ]
+    },
+    {
+      "caseLabel": "Missing veterinarian approval (string instead of boolean)",
+      "caseDescription": "TypeScript types cannot catch \"true\" (string) passed as veterinarianApproved at runtime.",
+      "expectedValid": false,
+      "library": "AJV",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0011120000000005349,
+      "avgDurationUs": 1.1120000000005348,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "veterinarianApproved: must be boolean"
+      ]
+    },
+    {
+      "caseLabel": "Missing veterinarian approval (string instead of boolean)",
+      "caseDescription": "TypeScript types cannot catch \"true\" (string) passed as veterinarianApproved at runtime.",
+      "expectedValid": false,
+      "library": "Joi",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.011639999999999873,
+      "avgDurationUs": 11.639999999999873,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "veterinarianApproved: \"veterinarianApproved\" must be a boolean"
+      ]
+    },
+    {
+      "caseLabel": "Non-integer animal count",
+      "caseDescription": "12.5 animals is not a whole number.",
+      "expectedValid": false,
+      "library": "TypeScript only",
+      "passed": true,
+      "caughtError": false,
+      "missedError": true,
+      "falseReject": false,
+      "avgDurationMs": 0.00020800000000008366,
+      "avgDurationUs": 0.20800000000008367,
+      "repetitions": 25,
+      "errorCount": 0,
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Non-integer animal count",
+      "caseDescription": "12.5 animals is not a whole number.",
+      "expectedValid": false,
+      "library": "Zod",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.011284000000000561,
+      "avgDurationUs": 11.28400000000056,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalCount: Animal count must be a whole number"
+      ]
+    },
+    {
+      "caseLabel": "Non-integer animal count",
+      "caseDescription": "12.5 animals is not a whole number.",
+      "expectedValid": false,
+      "library": "Superstruct",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.02328399999999874,
+      "avgDurationUs": 23.28399999999874,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalCount: Expected an integer, but received: 12.5"
+      ]
+    },
+    {
+      "caseLabel": "Non-integer animal count",
+      "caseDescription": "12.5 animals is not a whole number.",
+      "expectedValid": false,
+      "library": "Yup",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.055072000000000114,
+      "avgDurationUs": 55.072000000000116,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalCount: Animal count must be a whole number"
+      ]
+    },
+    {
+      "caseLabel": "Non-integer animal count",
+      "caseDescription": "12.5 animals is not a whole number.",
+      "expectedValid": false,
+      "library": "Typanion",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0020719999999982974,
+      "avgDurationUs": 2.0719999999982974,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        ".animalCount: Expected to be an integer (got 12.5)"
+      ]
+    },
+    {
+      "caseLabel": "Non-integer animal count",
+      "caseDescription": "12.5 animals is not a whole number.",
+      "expectedValid": false,
+      "library": "AJV",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.002080000000000837,
+      "avgDurationUs": 2.0800000000008367,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalCount: must be integer"
+      ]
+    },
+    {
+      "caseLabel": "Non-integer animal count",
+      "caseDescription": "12.5 animals is not a whole number.",
+      "expectedValid": false,
+      "library": "Joi",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.012947999999998955,
+      "avgDurationUs": 12.947999999998956,
+      "repetitions": 25,
+      "errorCount": 1,
+      "errorMessages": [
+        "animalCount: \"animalCount\" must be an integer"
+      ]
+    }
+  ],
+  "summaryByLibrary": [
+    {
+      "library": "TypeScript only",
+      "totalCases": 8,
+      "accuracyPct": 12.5,
+      "caughtErrors": 0,
+      "missedErrors": 7,
+      "falseRejects": 0,
+      "avgDurationUsPerCase": 0.5780000000004293
+    },
+    {
+      "library": "Zod",
+      "totalCases": 8,
+      "accuracyPct": 100,
+      "caughtErrors": 7,
+      "missedErrors": 0,
+      "falseRejects": 0,
+      "avgDurationUsPerCase": 18.096499999999764
+    },
+    {
+      "library": "Superstruct",
+      "totalCases": 8,
+      "accuracyPct": 100,
+      "caughtErrors": 7,
+      "missedErrors": 0,
+      "falseRejects": 0,
+      "avgDurationUsPerCase": 21.299500000000364
+    },
+    {
+      "library": "Yup",
+      "totalCases": 8,
+      "accuracyPct": 100,
+      "caughtErrors": 7,
+      "missedErrors": 0,
+      "falseRejects": 0,
+      "avgDurationUsPerCase": 70.39849999999973
+    },
+    {
+      "library": "Typanion",
+      "totalCases": 8,
+      "accuracyPct": 100,
+      "caughtErrors": 7,
+      "missedErrors": 0,
+      "falseRejects": 0,
+      "avgDurationUsPerCase": 7.131499999999562
+    },
+    {
+      "library": "AJV",
+      "totalCases": 8,
+      "accuracyPct": 100,
+      "caughtErrors": 7,
+      "missedErrors": 0,
+      "falseRejects": 0,
+      "avgDurationUsPerCase": 2.9640000000000555
+    },
+    {
+      "library": "Joi",
+      "totalCases": 8,
+      "accuracyPct": 100,
+      "caughtErrors": 7,
+      "missedErrors": 0,
+      "falseRejects": 0,
+      "avgDurationUsPerCase": 21.881999999999948
+    }
+  ]
+}

@@ -24,6 +24,22 @@ describe('slaughterRecordAjv', () => {
     expect(result.passed).toBe(false);
   });
 
+  it('rejects slaughter dates in the future', () => {
+    const result = validateWithAjv({
+      ...VALID_RECORD,
+      slaughterDate: '2099-01-01',
+    });
+    expect(result.passed).toBe(false);
+  });
+
+  it('rejects IDs that do not match ear-tag format', () => {
+    const result = validateWithAjv({
+      ...VALID_RECORD,
+      id: 'TAG-24-A7',
+    });
+    expect(result.passed).toBe(false);
+  });
+
   it('rejects records with unknown extra fields', () => {
     const result = validateWithAjv({
       ...VALID_RECORD,

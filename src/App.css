@@ -217,31 +217,59 @@
   font-size: 0.84rem;
 }
 
-.zod-flow-panel {
-  margin: 0 0 1rem;
-  border: 1px solid #343a40;
-  border-radius: 10px;
-  background: #171a1f;
-  padding: 0.9rem 1rem;
-}
-
-.zod-flow-panel h3 {
-  margin: 0 0 0.5rem;
-  font-size: 0.96rem;
-}
-
-.zod-flow-list {
-  margin: 0;
-  padding-left: 1.15rem;
-  color: #d1d5db;
-  line-height: 1.5;
-  font-size: 0.84rem;
-}
-
 .benchmark-mode-note {
   margin: -0.5rem 0 1rem;
   font-size: 0.83rem;
   color: #9ca3af;
+}
+
+.analysis-section {
+  gap: 0.9rem;
+}
+
+.analysis-section .approach-description {
+  margin-bottom: 0.35rem;
+}
+
+.analysis-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.7rem;
+}
+
+.analysis-note-card {
+  margin: 0;
+  border: 1px solid #343a40;
+  border-radius: 10px;
+  background: #171a1f;
+  color: #cbd5e1;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  padding: 0.7rem 0.8rem;
+}
+
+.analysis-controls {
+  border: 1px solid #343a40;
+  border-radius: 10px;
+  background: #171a1f;
+  padding: 0.85rem;
+}
+
+.analysis-section .benchmark-panel {
+  border-color: #363b42;
+  background: #191d22;
+}
+
+.analysis-section .benchmark-panel-header {
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid #2f3640;
+}
+
+.analysis-section .benchmark-table th {
+  position: sticky;
+  top: 0;
+  background: #191d22;
+  z-index: 1;
 }
 
 .benchmark-field {
@@ -396,8 +424,8 @@
     padding: 0.8rem;
   }
 
-  .zod-flow-panel {
-    padding: 0.8rem;
+  .analysis-controls {
+    padding: 0.75rem;
   }
 
   .benchmark-field input {
@@ -450,8 +478,11 @@
   .benchmark-mode-note { color: #6b7280; }
   .tradeoffs-panel { background: #fff; border-color: #e5e7eb; }
   .tradeoffs-list { color: #374151; }
-  .zod-flow-panel { background: #fff; border-color: #e5e7eb; }
-  .zod-flow-list { color: #374151; }
+  .analysis-note-card { background: #fff; border-color: #e5e7eb; color: #374151; }
+  .analysis-controls { background: #fff; border-color: #e5e7eb; }
+  .analysis-section .benchmark-panel { background: #fafafa; border-color: #ddd; }
+  .analysis-section .benchmark-panel-header { border-bottom-color: #e5e7eb; }
+  .analysis-section .benchmark-table th { background: #fafafa; }
   .benchmark-run-btn { background: #eef0ff; color: #2d3ab7; border-color: #7280ff; }
   .benchmark-error { color: #b91c1c; }
   .benchmark-panel { background: #fafafa; border-color: #ddd; }
