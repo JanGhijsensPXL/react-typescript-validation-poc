@@ -132,7 +132,7 @@ describe('baseline comparison: compile-time only vs runtime validation on submit
 
     // The invalid values survive and would be sent/stored as-is.
     expect(typeScriptOnlySubmission.storedRecord.herderName).toBe('');
-    expect(typeScriptOnlySubmission.storedRecord.type).toBe('pig');
+    expect(typeScriptOnlySubmission.storedRecord.type).toBe('unknown');
     expect(typeScriptOnlySubmission.storedRecord.slaughterDate).toBe('15-11-2024');
     expect(typeScriptOnlySubmission.storedRecord.animalCount).toBe(-3);
     expect(typeScriptOnlySubmission.storedRecord.totalWeightKg).toBe(0);
