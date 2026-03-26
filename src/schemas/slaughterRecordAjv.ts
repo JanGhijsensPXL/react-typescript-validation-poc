@@ -14,7 +14,7 @@ const slaughterRecordAjvSchema: JSONSchemaType<SlaughterRecord> = {
   required: [
     'id',
     'herderName',
-    'animalSpecies',
+    'type',
     'slaughterDate',
     'animalCount',
     'totalWeightKg',
@@ -24,9 +24,9 @@ const slaughterRecordAjvSchema: JSONSchemaType<SlaughterRecord> = {
   properties: {
     id: { type: 'string', pattern: EAR_TAG_ID_PATTERN },
     herderName: { type: 'string', minLength: 2, maxLength: 100 },
-    animalSpecies: {
+    type: {
       type: 'string',
-      enum: ['reindeer', 'elk', 'moose'],
+      enum: ['male', 'female', 'child', 'steralised male'],
     },
     slaughterDate: {
       type: 'string',

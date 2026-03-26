@@ -30,7 +30,7 @@ const isoDateString = refine(
 export const slaughterRecordSuperstructSchema = object({
   id: isEarTagId,
   herderName: size(string(), 2, 100),
-  animalSpecies: enums(['reindeer', 'elk', 'moose']),
+  type: enums(['male', 'female', 'child', 'steralised male']),
   slaughterDate: refine(isoDateString, 'pastOrTodayDate', (value) => {
     const date = new Date(`${value}T00:00:00Z`);
     const now = new Date();

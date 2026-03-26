@@ -1,14 +1,14 @@
 /**
- * TypeScript-only type definitions for a reindeer slaughter record.
+ * TypeScript-only type definitions for a slaughter record.
  * These types provide compile-time safety but cannot validate runtime data.
  */
 
-export type AnimalSpecies = 'reindeer' | 'elk' | 'moose';
+export type AnimalType = 'male' | 'female' | 'child' | 'steralised male';
 
 export type SlaughterRecord = {
   id: string;
   herderName: string;
-  animalSpecies: AnimalSpecies;
+  type: AnimalType;
   slaughterDate: string; // ISO 8601 date string (YYYY-MM-DD)
   animalCount: number;
   totalWeightKg: number;

@@ -20,7 +20,7 @@ export function validateWithTypeScriptOnly(data: unknown): {
   const requiredKeys: (keyof SlaughterRecord)[] = [
     'id',
     'herderName',
-    'animalSpecies',
+    'type',
     'slaughterDate',
     'animalCount',
     'totalWeightKg',

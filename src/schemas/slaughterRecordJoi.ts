@@ -5,7 +5,7 @@ const EAR_TAG_ID_PATTERN = /^SL-\d{4}-\d{3,6}$/;
 export const slaughterRecordJoiSchema = Joi.object({
   id: Joi.string().pattern(EAR_TAG_ID_PATTERN).required(),
   herderName: Joi.string().min(2).max(100).required(),
-  animalSpecies: Joi.string().valid('reindeer', 'elk', 'moose').required(),
+  type: Joi.string().valid('male', 'female', 'child', 'steralised male').required(),
   slaughterDate: Joi.string()
     .pattern(/^\d{4}-\d{2}-\d{2}$/)
     .custom((value, helpers) => {

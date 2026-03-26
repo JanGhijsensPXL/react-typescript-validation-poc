@@ -10,7 +10,7 @@ function isNotFutureDate(dateString: string): boolean {
 }
 
 /**
- * Zod schema for a reindeer slaughter record.
+ * Zod schema for a slaughter record.
  * Provides runtime validation with detailed error messages for each field.
  */
 export const slaughterRecordSchema = z.object({
@@ -22,8 +22,8 @@ export const slaughterRecordSchema = z.object({
     .string()
     .min(2, 'Herder name must be at least 2 characters')
     .max(100, 'Herder name must be at most 100 characters'),
-  animalSpecies: z.enum(['reindeer', 'elk', 'moose'], {
-    error: 'Animal species must be one of: reindeer, elk, moose',
+  type: z.enum(['male', 'female', 'child', 'steralised male'], {
+    error: 'Type must be one of: male, female, child, steralised male',
   }),
   slaughterDate: z
     .string()

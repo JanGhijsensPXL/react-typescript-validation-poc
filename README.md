@@ -72,18 +72,40 @@ npx tsx scripts/validation-case-report.ts --reps=100
 ```text
 src/
   components/       # Interactive demos, dashboard, analysis UI
-  schemas/          # Zod, AJV, and Joi schema implementations
+  schemas/          # Runtime schema implementations for all compared libraries
   bench/            # Benchmark orchestration and adapters
   __tests__/        # Unit tests and fuzz comparison tests
   types/            # Shared TypeScript domain types
 scripts/
   validation-benchmark.ts
+  validation-case-report.ts
 ```
+
+## Domain-Specific Validation Cases
+
+In addition to randomized fuzz data, the POC now includes explicit reindeer husbandry invalid submissions:
+- carcass weight of `0`
+- negative animal count
+- slaughter date in the future
+- wrong ear-tag / record ID format (expected `SL-YYYY-NNN`)
+
+These domain cases are used in shared test cases, benchmark invalid generation, and comparison tests.
+
+## Exact Error Output Comparison
+
+The Analysis tab includes an "Exact Error Output Comparison" panel.
+
+For one selected invalid input, it displays each library side-by-side with:
+- accept or reject result
+- exact raw error messages returned by that library
+
+This gives directly citable material for thesis sections discussing error quality and message clarity.
 
 ## Methodology
 
 The comparison combines four signals:
 - Correctness: mismatch rate under randomized fuzz cases
+- Domain validity: deterministic real-world invalid submissions from the target business context
 - Performance: average microseconds per item for valid and invalid records
 - Error quality: field-level diagnostics and actionable messages
 - Developer experience: TypeScript ergonomics and schema maintainability
@@ -143,6 +165,6 @@ Choose Joi when advanced conditional validation complexity is the primary concer
 
 ## Validation Scope and Quality Signals
 
-- Test suite includes unit tests per validator plus cross-library fuzz validation.
+- Test suite includes unit tests per validator, cross-library fuzz validation, and deterministic domain-case comparisons.
 - Current test run status: passing.
 - Benchmark conclusions should be treated as comparative signals, not absolute hardware-independent truths.

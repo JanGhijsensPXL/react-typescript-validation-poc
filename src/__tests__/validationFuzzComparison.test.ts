@@ -26,7 +26,7 @@ function mutateInvalid(base: typeof VALID_RECORD, index: number, includeUnknownF
   const mod = index % modBase;
   if (mod === 0) return { ...base, id: '' };
   if (mod === 1) return { ...base, herderName: '' };
-  if (mod === 2) return { ...base, animalSpecies: 'pig' };
+  if (mod === 2) return { ...base, type: 'unknown' };
   if (mod === 3) return { ...base, slaughterDate: '15-11-2024' };
   if (mod === 4) return { ...base, slaughterDate: '2024-13-99' };
   if (mod === 5) return { ...base, animalCount: -1 };
@@ -44,7 +44,7 @@ function mutateValid(base: typeof VALID_RECORD, index: number): typeof VALID_REC
     ...base,
     id: `SL-2024-${String(index + 1).padStart(6, '0')}`,
     herderName: `Herder ${index + 1}`,
-    animalSpecies: (['reindeer', 'elk', 'moose'] as const)[index % 3],
+    type: (['male', 'female', 'child', 'steralised male'] as const)[index % 4],
     slaughterDate: `2024-${String((index % 12) + 1).padStart(2, '0')}-${String((index % 28) + 1).padStart(2, '0')}`,
     animalCount: (index % 300) + 1,
     totalWeightKg: (index % 5000) + 1,

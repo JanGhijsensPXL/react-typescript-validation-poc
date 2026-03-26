@@ -69,7 +69,7 @@ function cloneInvalid(index: number): unknown {
   const mod = index % 11;
   if (mod === 0) return { ...VALID_RECORD, id: '' };
   if (mod === 1) return { ...VALID_RECORD, herderName: '' };
-  if (mod === 2) return { ...VALID_RECORD, animalSpecies: 'pig' };
+  if (mod === 2) return { ...VALID_RECORD, type: 'unknown' };
   if (mod === 3) return { ...VALID_RECORD, slaughterDate: '15-11-2024' };
   if (mod === 4) return { ...VALID_RECORD, slaughterDate: '2024-13-99' };
   if (mod === 5) return { ...VALID_RECORD, slaughterDate: '2099-01-01' };

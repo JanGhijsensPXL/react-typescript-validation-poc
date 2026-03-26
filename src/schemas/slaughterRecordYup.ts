@@ -13,10 +13,13 @@ export const slaughterRecordYupSchema = yup
       .required('Herder name is required')
       .min(2, 'Herder name must be at least 2 characters')
       .max(100, 'Herder name must be at most 100 characters'),
-    animalSpecies: yup
-      .mixed<'reindeer' | 'elk' | 'moose'>()
-      .oneOf(['reindeer', 'elk', 'moose'], 'Animal species must be one of: reindeer, elk, moose')
-      .required('Animal species is required'),
+    type: yup
+      .mixed<'male' | 'female' | 'child' | 'steralised male'>()
+      .oneOf(
+        ['male', 'female', 'child', 'steralised male'],
+        'Type must be one of: male, female, child, steralised male',
+      )
+      .required('Type is required'),
     slaughterDate: yup
       .string()
       .required('Date is required')

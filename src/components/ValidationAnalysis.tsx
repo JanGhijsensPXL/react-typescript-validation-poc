@@ -68,7 +68,7 @@ type ErrorComparisonRow = {
 const KNOWN_FIELDS = [
   'id',
   'herderName',
-  'animalSpecies',
+  'type',
   'slaughterDate',
   'animalCount',
   'totalWeightKg',
@@ -287,7 +287,7 @@ function makeDiagnosticInvalid(index: number): unknown {
 
   if (mod === 0) return { ...VALID_RECORD, id: '' };
   if (mod === 1) return { ...VALID_RECORD, herderName: '' };
-  if (mod === 2) return { ...VALID_RECORD, animalSpecies: 'pig' };
+  if (mod === 2) return { ...VALID_RECORD, type: 'unknown' };
   if (mod === 3) return { ...VALID_RECORD, slaughterDate: '15-11-2024' };
   if (mod === 4) return { ...VALID_RECORD, animalCount: -1 };
   if (mod === 5) return { ...VALID_RECORD, slaughterDate: '2099-01-01' };
@@ -449,15 +449,6 @@ export default function ValidationAnalysis() {
     })
     : [];
 
-  const zodFlowSteps = [
-    'TEST_CASES are created as unknown inputs in src/data/testCases.ts.',
-    'App passes TEST_CASES into ZodValidationDemo when the Zod tab is selected.',
-    'slaughterRecordSchema defines runtime constraints for every field in src/schemas/slaughterRecordZod.ts.',
-    'validateWithZod calls slaughterRecordSchema.safeParse(data) for each case.',
-    'On failure, Zod issues are mapped to field: message strings for display.',
-    'UI compares actual result against expectValid and labels each case as caught or missed.',
-  ];
-
   async function handleRun() {
     try {
       setLoading(true);
@@ -558,15 +549,6 @@ export default function ValidationAnalysis() {
           </div>
         </div>
       )}
-
-      <div className="zod-flow-panel">
-        <h3>Zod Validation Flow</h3>
-        <ol className="zod-flow-list">
-          {zodFlowSteps.map((step) => (
-            <li key={step}>{step}</li>
-          ))}
-        </ol>
-      </div>
 
       <div className="benchmark-controls">
         <label className="benchmark-field">

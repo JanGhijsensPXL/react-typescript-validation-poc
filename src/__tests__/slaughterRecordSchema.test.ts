@@ -18,14 +18,14 @@ describe('slaughterRecordSchema', () => {
     expect(result.success).toBe(false);
   });
 
-  it('rejects an invalid animal species', () => {
-    const result = slaughterRecordSchema.safeParse({ ...VALID_RECORD, animalSpecies: 'pig' });
+  it('rejects an invalid type value', () => {
+    const result = slaughterRecordSchema.safeParse({ ...VALID_RECORD, type: 'unknown' });
     expect(result.success).toBe(false);
   });
 
-  it('accepts all valid species values', () => {
-    for (const species of ['reindeer', 'elk', 'moose'] as const) {
-      const result = slaughterRecordSchema.safeParse({ ...VALID_RECORD, animalSpecies: species });
+  it('accepts all valid type values', () => {
+    for (const kind of ['male', 'female', 'child', 'steralised male'] as const) {
+      const result = slaughterRecordSchema.safeParse({ ...VALID_RECORD, type: kind });
       expect(result.success).toBe(true);
     }
   });

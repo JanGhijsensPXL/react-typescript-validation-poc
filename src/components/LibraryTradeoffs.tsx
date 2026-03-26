@@ -52,7 +52,7 @@ type ValidatorAdapter = {
 const KNOWN_FIELDS = [
   'id',
   'herderName',
-  'animalSpecies',
+  'type',
   'slaughterDate',
   'animalCount',
   'totalWeightKg',
@@ -234,7 +234,7 @@ function makeDiagnosticInvalid(index: number): unknown {
 
   if (mod === 0) return { ...VALID_RECORD, id: '' };
   if (mod === 1) return { ...VALID_RECORD, herderName: '' };
-  if (mod === 2) return { ...VALID_RECORD, animalSpecies: 'pig' };
+  if (mod === 2) return { ...VALID_RECORD, type: 'unknown' };
   if (mod === 3) return { ...VALID_RECORD, slaughterDate: '15-11-2024' };
   if (mod === 4) return { ...VALID_RECORD, animalCount: -1 };
   if (mod === 5) return { ...VALID_RECORD, totalWeightKg: 0 };

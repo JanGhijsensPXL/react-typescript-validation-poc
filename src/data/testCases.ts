@@ -10,7 +10,7 @@ export type TestCase = {
 export const VALID_RECORD: SlaughterRecord = {
   id: 'SL-2024-001',
   herderName: 'Aslak Eira',
-  animalSpecies: 'reindeer',
+  type: 'male',
   slaughterDate: '2024-11-15',
   animalCount: 45,
   totalWeightKg: 1800,
@@ -32,9 +32,9 @@ export const TEST_CASES: TestCase[] = [
     expectValid: false,
   },
   {
-    label: 'Invalid species',
-    description: '"pig" is not an accepted animal species.',
-    data: { ...VALID_RECORD, animalSpecies: 'pig' },
+    label: 'Invalid type',
+    description: '"unknown" is not an accepted animal type.',
+    data: { ...VALID_RECORD, type: 'unknown' },
     expectValid: false,
   },
   {

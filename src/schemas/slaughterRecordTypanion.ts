@@ -56,7 +56,7 @@ const isStrictlyPositiveNumber = makeValidator<number, number>({
 export const slaughterRecordTypanionSchema = isObject({
   id: cascade(isString(), matchesRegExp(EAR_TAG_ID_PATTERN)),
   herderName: cascade(isString(), hasMinLength(2), hasMaxLength(100)),
-  animalSpecies: isEnum(['reindeer', 'elk', 'moose']),
+  type: isEnum(['male', 'female', 'child', 'steralised male']),
   slaughterDate: cascade(
     isString(),
     matchesRegExp(/^\d{4}-\d{2}-\d{2}$/),

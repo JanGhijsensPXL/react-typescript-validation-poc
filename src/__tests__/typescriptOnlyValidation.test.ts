@@ -28,8 +28,8 @@ describe('validateWithTypeScriptOnly', () => {
     expect(result.passed).toBe(true);
   });
 
-  it('accepts an invalid animal species — cannot detect wrong enum values at runtime', () => {
-    const result = validateWithTypeScriptOnly({ ...VALID_RECORD, animalSpecies: 'pig' });
+  it('accepts an invalid type value — cannot detect wrong enum values at runtime', () => {
+    const result = validateWithTypeScriptOnly({ ...VALID_RECORD, type: 'unknown' });
     expect(result.passed).toBe(true);
   });
 
@@ -67,7 +67,7 @@ describe('validateWithTypeScriptOnly', () => {
     const result = validateWithTypeScriptOnly({ id: 'SL-001' });
     expect(result.passed).toBe(false);
     expect(result.note).toContain('herderName');
-    expect(result.note).toContain('animalSpecies');
+    expect(result.note).toContain('type');
     expect(result.note).toContain('veterinarianApproved');
   });
 });
@@ -120,7 +120,7 @@ describe('baseline comparison: compile-time only vs runtime validation on submit
     const invalidButCompletePayload = {
       ...VALID_RECORD,
       herderName: '',
-      animalSpecies: 'pig',
+      type: 'unknown',
       slaughterDate: '15-11-2024',
       animalCount: -3,
       totalWeightKg: 0,
@@ -132,7 +132,7 @@ describe('baseline comparison: compile-time only vs runtime validation on submit
 
     // The invalid values survive and would be sent/stored as-is.
     expect(typeScriptOnlySubmission.storedRecord.herderName).toBe('');
-    expect(typeScriptOnlySubmission.storedRecord.animalSpecies).toBe('pig');
+    expect(typeScriptOnlySubmission.storedRecord.type).toBe('pig');
     expect(typeScriptOnlySubmission.storedRecord.slaughterDate).toBe('15-11-2024');
     expect(typeScriptOnlySubmission.storedRecord.animalCount).toBe(-3);
     expect(typeScriptOnlySubmission.storedRecord.totalWeightKg).toBe(0);
@@ -141,7 +141,7 @@ describe('baseline comparison: compile-time only vs runtime validation on submit
     const runtimeValidatedSubmission = submitFormWithRuntimeValidation(invalidButCompletePayload);
     expect(runtimeValidatedSubmission.submitted).toBe(false);
     expect(runtimeValidatedSubmission.errorFields).toContain('herderName');
-    expect(runtimeValidatedSubmission.errorFields).toContain('animalSpecies');
+    expect(runtimeValidatedSubmission.errorFields).toContain('type');
     expect(runtimeValidatedSubmission.errorFields).toContain('slaughterDate');
     expect(runtimeValidatedSubmission.errorFields).toContain('animalCount');
     expect(runtimeValidatedSubmission.errorFields).toContain('totalWeightKg');
