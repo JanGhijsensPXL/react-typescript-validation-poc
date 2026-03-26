@@ -2,6 +2,9 @@
 
 This project compares popular validation approaches for a shared domain model (slaughter record input) in a React + TypeScript application.
 
+Current domain model note:
+- `type` is validated as one of: `male`, `female`, `child`, `steralised male`
+
 It focuses on three questions:
 - Which libraries produce correct results consistently?
 - How do they behave on valid vs invalid input?
@@ -88,6 +91,7 @@ In addition to randomized fuzz data, the POC now includes explicit reindeer husb
 - negative animal count
 - slaughter date in the future
 - wrong ear-tag / record ID format (expected `SL-YYYY-NNN`)
+- invalid animal `type` value (for example `unknown`)
 
 These domain cases are used in shared test cases, benchmark invalid generation, and comparison tests.
 
@@ -146,7 +150,7 @@ For this React + TypeScript UI-focused POC, we use weighted criteria:
 Weighted score formula:
 
 $$
-  ext{Total} = \sum_i (\text{weight}_i \times \text{score}_i)
+	ext{Total} = \sum_i (\text{weight}_i \times \text{score}_i)
 $$
 
 Outcome for this project context:
