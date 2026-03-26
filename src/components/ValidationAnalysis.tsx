@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   type BenchmarkMode,
   type DatasetProfile,
@@ -13,7 +13,7 @@ import { validateWithYup } from '../schemas/slaughterRecordYup';
 import { validateWithTypanion } from '../schemas/slaughterRecordTypanion';
 import { validateWithAjv } from '../schemas/slaughterRecordAjv';
 import { validateWithJoi } from '../schemas/slaughterRecordJoi';
-import { VALID_RECORD } from '../data/testCases';
+import { TEST_CASES, VALID_RECORD } from '../data/testCases';
 import zodSchemaSource from '../schemas/slaughterRecordZod.ts?raw';
 import superstructSchemaSource from '../schemas/slaughterRecordSuperstruct.ts?raw';
 import yupSchemaSource from '../schemas/slaughterRecordYup.ts?raw';
@@ -57,6 +57,12 @@ type SourceMetricRow = {
 type ValidatorAdapter = {
   name: string;
   run: (input: unknown) => ValidationResult;
+};
+
+type ErrorComparisonRow = {
+  validator: string;
+  passed: boolean;
+  errors: string[];
 };
 
 const KNOWN_FIELDS = [
@@ -361,6 +367,56 @@ function toDiagnosticRows(adapters: ValidatorAdapter[], sampleSize: number): Dia
   });
 }
 
+function buildValidatorAdapters(): ValidatorAdapter[] {
+  return [
+    {
+      name: 'TypeScript only',
+      run: (input) => {
+        const result = validateWithTypeScriptOnly(input);
+        return {
+          passed: result.passed,
+          errors: result.passed ? [] : [result.note],
+        };
+      },
+    },
+    {
+      name: 'Zod',
+      run: (input) => {
+        const result = slaughterRecordSchema.safeParse(input);
+        if (result.success) {
+          return { passed: true, errors: [] };
+        }
+        return {
+          passed: false,
+          errors: result.error.issues.map(
+            (issue) => `${issue.path.join('.') || 'root'}: ${issue.message}`,
+          ),
+        };
+      },
+    },
+    {
+      name: 'Superstruct',
+      run: (input) => validateWithSuperstruct(input),
+    },
+    {
+      name: 'Yup',
+      run: (input) => validateWithYup(input),
+    },
+    {
+      name: 'Typanion',
+      run: (input) => validateWithTypanion(input),
+    },
+    {
+      name: 'AJV',
+      run: (input) => validateWithAjv(input),
+    },
+    {
+      name: 'Joi',
+      run: (input) => validateWithJoi(input),
+    },
+  ];
+}
+
 export default function ValidationAnalysis() {
   const [datasetSize, setDatasetSize] = useState<number>(10000);
   const [runs, setRuns] = useState<number>(10);
@@ -371,7 +427,27 @@ export default function ValidationAnalysis() {
   const [error, setError] = useState<string>('');
   const [snapshotRows, setSnapshotRows] = useState<SnapshotRow[]>([]);
   const [diagnosticRows, setDiagnosticRows] = useState<DiagnosticRow[]>([]);
+  const invalidCases = TEST_CASES.filter((testCase) => !testCase.expectValid);
+  const [selectedInvalidCaseLabel, setSelectedInvalidCaseLabel] = useState<string>(
+    invalidCases[0]?.label ?? '',
+  );
   const sourceMetricRows = buildSourceMetricRows();
+  const adapters = useMemo(() => buildValidatorAdapters(), []);
+
+  const selectedInvalidCase =
+    invalidCases.find((testCase) => testCase.label === selectedInvalidCaseLabel) ??
+    invalidCases[0];
+
+  const errorComparisonRows: ErrorComparisonRow[] = selectedInvalidCase
+    ? adapters.map((adapter) => {
+      const result = adapter.run(selectedInvalidCase.data);
+      return {
+        validator: adapter.name,
+        passed: result.passed,
+        errors: result.errors,
+      };
+    })
+    : [];
 
   const zodFlowSteps = [
     'TEST_CASES are created as unknown inputs in src/data/testCases.ts.',
@@ -401,54 +477,6 @@ export default function ValidationAnalysis() {
       if (valid && invalid) {
         setSnapshotRows(toSummaryRows(valid.rows, invalid.rows));
 
-        const adapters: ValidatorAdapter[] = [
-          {
-            name: 'TypeScript only',
-            run: (input) => {
-              const result = validateWithTypeScriptOnly(input);
-              return {
-                passed: result.passed,
-                errors: result.passed ? [] : [result.note],
-              };
-            },
-          },
-          {
-            name: 'Zod',
-            run: (input) => {
-              const result = slaughterRecordSchema.safeParse(input);
-              if (result.success) {
-                return { passed: true, errors: [] };
-              }
-              return {
-                passed: false,
-                errors: result.error.issues.map(
-                  (issue) => `${issue.path.join('.') || 'root'}: ${issue.message}`,
-                ),
-              };
-            },
-          },
-          {
-            name: 'Superstruct',
-            run: (input) => validateWithSuperstruct(input),
-          },
-          {
-            name: 'Yup',
-            run: (input) => validateWithYup(input),
-          },
-          {
-            name: 'Typanion',
-            run: (input) => validateWithTypanion(input),
-          },
-          {
-            name: 'AJV',
-            run: (input) => validateWithAjv(input),
-          },
-          {
-            name: 'Joi',
-            run: (input) => validateWithJoi(input),
-          },
-        ];
-
         setDiagnosticRows(toDiagnosticRows(adapters, Math.min(datasetSize, 4000)));
       }
     } catch {
@@ -476,6 +504,60 @@ export default function ValidationAnalysis() {
         <strong>Mode:</strong> <code>detailed-errors</code> includes richer failure tracking,
         while <code>fast-boolean</code> focuses on simple pass/fail checks.
       </p>
+
+      {selectedInvalidCase && (
+        <div className="benchmark-panel">
+          <div className="benchmark-panel-header">
+            <h3>Exact Error Output Comparison</h3>
+            <span>Same invalid input across all libraries</span>
+          </div>
+
+          <div className="benchmark-controls">
+            <label className="benchmark-field">
+              Invalid case
+              <select
+                value={selectedInvalidCase.label}
+                onChange={(e) => setSelectedInvalidCaseLabel(e.target.value)}
+              >
+                {invalidCases.map((testCase) => (
+                  <option key={testCase.label} value={testCase.label}>
+                    {testCase.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <p className="benchmark-mode-note">{selectedInvalidCase.description}</p>
+
+          <div className="benchmark-table-wrap">
+            <table className="benchmark-table">
+              <thead>
+                <tr>
+                  <th>Validator</th>
+                  <th>Result</th>
+                  <th>Exact error output</th>
+                </tr>
+              </thead>
+              <tbody>
+                {errorComparisonRows.map((row) => (
+                  <tr key={row.validator}>
+                    <td>{row.validator}</td>
+                    <td>{row.passed ? 'accepted' : 'rejected'}</td>
+                    <td>
+                      <pre className="analysis-error-output">
+                        {row.errors.length > 0
+                          ? row.errors.join('\n')
+                          : 'No error output (input accepted)'}
+                      </pre>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       <div className="zod-flow-panel">
         <h3>Zod Validation Flow</h3>

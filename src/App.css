@@ -415,6 +415,19 @@
   background: #252525;
 }
 
+.analysis-error-output {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #d1d5db;
+  background: #111827;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+  min-width: 280px;
+}
+
 @media (max-width: 780px) {
   .benchmark-field {
     width: 100%;
@@ -493,5 +506,6 @@
   .benchmark-chart-value { color: #374151; }
   .benchmark-table th, .benchmark-table td { border-bottom-color: #ddd; }
   .benchmark-table tbody tr:hover { background: #f3f4f6; }
+  .analysis-error-output { color: #1f2937; background: #f8fafc; border-color: #e2e8f0; }
 }
 
