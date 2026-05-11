@@ -35,8 +35,8 @@ export default function TypanionValidationDemo({ testCases }: Props) {
                 <span className={`result-badge ${result.passed ? 'pass' : 'fail'}`}>
                   {result.passed ? '✓ Accepted' : '✗ Rejected'}
                 </span>
-                {missed && <span className="missed-badge">⚠ Invalid input NOT detected</span>}
-                {caught && <span className="caught-badge">✓ Invalid input detected</span>}
+                {missed && <span className="missed-badge">Invalid input NOT detected</span>}
+                {caught && <span className="caught-badge">Invalid input detected</span>}
               </div>
               {result.errors.length > 0 && (
                 <ul className="error-list">

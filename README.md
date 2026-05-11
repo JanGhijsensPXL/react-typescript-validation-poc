@@ -22,6 +22,19 @@ It focuses on three questions:
 | AJV | JSON Schema validator | Standards-based and API friendly |
 | Joi | Object schema validator | Very expressive for complex rules |
 
+## Backend Integration (MSW)
+
+This POC now includes **Mock Service Worker (MSW)** that accurately simulates the VasamaAPI backend, including:
+
+- **Backend-accurate DTOs** with PascalCase property names and type quirks (string IDs, optional fields)
+- **Real endpoints** for authentication, RH cooperatives, slaughter events, and more
+- **Integration tests** verifying that frontend code can parse backend responses correctly
+- **Mapper examples** showing how to convert backend DTOs to frontend domain models
+
+See [src/mocks/README.md](src/mocks/README.md) for details on the mock server setup and how to add new endpoints.
+
+Run tests with `npm test` to verify backend compatibility across all validation approaches.
+
 ## Quick Start
 
 ```bash
