@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Frontend Validation Strategy — Proof of Concept</h1>
+        <h1>Frontend Validation Strategy - Proof of Concept</h1>
         <p className="subtitle">
           Reindeer Husbandry Accounting System · Slaughter Record Validation
         </p>

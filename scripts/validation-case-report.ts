@@ -33,6 +33,7 @@ type ReportRow = {
   repetitions: number;
   errorCount: number;
   errorMessages: string[];
+  fieldsWithErrors: string[];
 };
 
 type LibrarySummary = {
@@ -120,6 +121,22 @@ function parseRepetitionsArg(argv: string[]): number {
   return Math.floor(value);
 }
 
+// Extract field names mentioned in error messages.
+// Matches patterns like "id: ...", "field.name: ...", or "root.herderName: ..."
+function extractFieldsFromErrors(errors: string[]): string[] {
+  const fields = new Set<string>();
+  const fieldPattern = /(?:^|[.\s])([a-zA-Z][a-zA-Z0-9]*)\s*:/g;
+
+  for (const error of errors) {
+    let match;
+    while ((match = fieldPattern.exec(error)) !== null) {
+      fields.add(match[1]);
+    }
+  }
+
+  return Array.from(fields).sort();
+}
+
 function runTimed(
   adapter: ValidatorAdapter,
   input: unknown,
@@ -160,6 +177,7 @@ function rowsToCsv(rows: ReportRow[]): string {
     'avgDurationUs',
     'repetitions',
     'errorCount',
+    'fieldsWithErrors',
     'errorMessages',
   ];
 
@@ -179,6 +197,7 @@ function rowsToCsv(rows: ReportRow[]): string {
       row.avgDurationUs.toFixed(3),
       String(row.repetitions),
       String(row.errorCount),
+      row.fieldsWithErrors.join(';'),
       row.errorMessages.join(' | '),
     ].map(toCsvCell);
 
@@ -228,6 +247,7 @@ function buildReport(repetitions: number): ReportDocument {
       const caughtError = !testCase.expectValid && !outcome.passed;
       const missedError = !testCase.expectValid && outcome.passed;
       const falseReject = testCase.expectValid && !outcome.passed;
+      const fieldsWithErrors = extractFieldsFromErrors(outcome.errors);
 
       rows.push({
         caseLabel: testCase.label,
@@ -242,6 +262,7 @@ function buildReport(repetitions: number): ReportDocument {
         avgDurationUs: avgDurationMs * 1000,
         repetitions,
         errorCount: outcome.errors.length,
+        fieldsWithErrors,
         errorMessages: outcome.errors,
       });
     }

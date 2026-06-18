@@ -8,13 +8,13 @@ type Props = {
 /**
  * Demonstrates TypeScript-only validation.
  * TypeScript checks types at compile time, but at runtime the data is accepted
- * as-is — invalid values that satisfy the structural shape pass without error.
+ * as-is - invalid values that satisfy the structural shape pass without error.
  */
 export function validateWithTypeScriptOnly(data: unknown): {
   passed: boolean;
   note: string;
 } {
-  // TypeScript type assertion — no runtime checks, only a compile-time cast.
+  // TypeScript type assertion - no runtime checks, only a compile-time cast.
   const record = data as SlaughterRecord;
   // The only runtime check we can do is whether required keys exist.
   const requiredKeys: (keyof SlaughterRecord)[] = [
@@ -35,14 +35,14 @@ export function validateWithTypeScriptOnly(data: unknown): {
   }
   return {
     passed: true,
-    note: 'Passed — TypeScript cannot detect invalid values at runtime.',
+    note: 'Passed - TypeScript cannot detect invalid values at runtime.',
   };
 }
 
 export default function TypeScriptOnlyDemo({ testCases }: Props) {
   return (
     <section className="demo-section">
-      <h2>Approach 1 — TypeScript Typing Only</h2>
+      <h2>Approach 1 - TypeScript Typing Only</h2>
       <p className="approach-description">
         TypeScript provides <strong>compile-time</strong> type checking. At runtime, data is
         cast using <code>as SlaughterRecord</code>. Invalid field values that match the

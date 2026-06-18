@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-03-26T08:06:59.954Z",
+  "generatedAt": "2026-06-18T14:15:24.288Z",
   "repetitionsPerCase": 25,
   "totals": {
-    "cases": 8,
+    "cases": 10,
     "libraries": 7,
-    "rows": 56
+    "rows": 70
   },
   "rows": [
     {
@@ -16,10 +16,11 @@
       "caughtError": false,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.0022320000000013353,
-      "avgDurationUs": 2.232000000001335,
+      "avgDurationMs": 0.002555999999999585,
+      "avgDurationUs": 2.5559999999995853,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -31,10 +32,11 @@
       "caughtError": false,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.041176000000000386,
-      "avgDurationUs": 41.176000000000386,
+      "avgDurationMs": 0.04538000000000011,
+      "avgDurationUs": 45.38000000000011,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -46,10 +48,11 @@
       "caughtError": false,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.0332080000000019,
-      "avgDurationUs": 33.2080000000019,
+      "avgDurationMs": 0.060763999999999214,
+      "avgDurationUs": 60.763999999999214,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -61,10 +64,11 @@
       "caughtError": false,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.05895999999999958,
-      "avgDurationUs": 58.95999999999958,
+      "avgDurationMs": 0.06279600000000073,
+      "avgDurationUs": 62.796000000000724,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -76,10 +80,11 @@
       "caughtError": false,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.023399999999999182,
-      "avgDurationUs": 23.39999999999918,
+      "avgDurationMs": 0.028679999999999383,
+      "avgDurationUs": 28.67999999999938,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -91,10 +96,11 @@
       "caughtError": false,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.012447999999999411,
-      "avgDurationUs": 12.44799999999941,
+      "avgDurationMs": 0.01600400000000036,
+      "avgDurationUs": 16.00400000000036,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -106,10 +112,11 @@
       "caughtError": false,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.03093599999999924,
-      "avgDurationUs": 30.93599999999924,
+      "avgDurationMs": 0.03457999999999856,
+      "avgDurationUs": 34.57999999999856,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -121,10 +128,11 @@
       "caughtError": false,
       "missedError": true,
       "falseReject": false,
-      "avgDurationMs": 0.00030400000000099683,
-      "avgDurationUs": 0.3040000000009968,
+      "avgDurationMs": 0.0004960000000005494,
+      "avgDurationUs": 0.4960000000005494,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -136,10 +144,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.022463999999999942,
-      "avgDurationUs": 22.463999999999942,
+      "avgDurationMs": 0.025399999999999635,
+      "avgDurationUs": 25.399999999999636,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "herderName"
+      ],
       "errorMessages": [
         "herderName: Herder name must be at least 2 characters"
       ]
@@ -153,10 +164,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.021911999999999807,
-      "avgDurationUs": 21.911999999999807,
+      "avgDurationMs": 0.02993600000000015,
+      "avgDurationUs": 29.93600000000015,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "herderName"
+      ],
       "errorMessages": [
         "herderName: Expected a string with a length between `2` and `100` but received one with a length of `0`"
       ]
@@ -170,10 +184,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.09499199999999973,
-      "avgDurationUs": 94.99199999999973,
+      "avgDurationMs": 0.11105600000000095,
+      "avgDurationUs": 111.05600000000095,
       "repetitions": 25,
       "errorCount": 2,
+      "fieldsWithErrors": [
+        "herderName"
+      ],
       "errorMessages": [
         "herderName: Herder name is required",
         "herderName: Herder name must be at least 2 characters"
@@ -188,10 +205,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.007179999999998472,
-      "avgDurationUs": 7.179999999998472,
+      "avgDurationMs": 0.009267999999999575,
+      "avgDurationUs": 9.267999999999574,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "herderName"
+      ],
       "errorMessages": [
         ".herderName: Expected to have a length of at least 2 elements (got 0)"
       ]
@@ -205,10 +225,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.0031960000000003674,
-      "avgDurationUs": 3.1960000000003674,
+      "avgDurationMs": 0.003096000000000458,
+      "avgDurationUs": 3.0960000000004584,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "herderName"
+      ],
       "errorMessages": [
         "herderName: must NOT have fewer than 2 characters"
       ]
@@ -222,129 +245,154 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.03909200000000055,
-      "avgDurationUs": 39.09200000000055,
+      "avgDurationMs": 0.04346000000000003,
+      "avgDurationUs": 43.460000000000036,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "herderName"
+      ],
       "errorMessages": [
         "herderName: \"herderName\" is not allowed to be empty"
       ]
     },
     {
-      "caseLabel": "Invalid species",
-      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "caseLabel": "Invalid type",
+      "caseDescription": "\"unknown\" is not an accepted animal type.",
       "expectedValid": false,
       "library": "TypeScript only",
       "passed": true,
       "caughtError": false,
       "missedError": true,
       "falseReject": false,
-      "avgDurationMs": 0.0006960000000003674,
-      "avgDurationUs": 0.6960000000003674,
+      "avgDurationMs": 0.0016280000000006112,
+      "avgDurationUs": 1.6280000000006112,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
-      "caseLabel": "Invalid species",
-      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "caseLabel": "Invalid type",
+      "caseDescription": "\"unknown\" is not an accepted animal type.",
       "expectedValid": false,
       "library": "Zod",
       "passed": false,
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.015703999999998358,
-      "avgDurationUs": 15.703999999998357,
+      "avgDurationMs": 0.019576000000001842,
+      "avgDurationUs": 19.57600000000184,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "of",
+        "type"
+      ],
       "errorMessages": [
-        "animalSpecies: Animal species must be one of: reindeer, elk, moose"
+        "type: Type must be one of: male, female, child, steralised male"
       ]
     },
     {
-      "caseLabel": "Invalid species",
-      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "caseLabel": "Invalid type",
+      "caseDescription": "\"unknown\" is not an accepted animal type.",
       "expectedValid": false,
       "library": "Superstruct",
       "passed": false,
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.029492000000000188,
-      "avgDurationUs": 29.49200000000019,
+      "avgDurationMs": 0.04623199999999997,
+      "avgDurationUs": 46.23199999999997,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "received",
+        "type"
+      ],
       "errorMessages": [
-        "animalSpecies: Expected one of `\"reindeer\",\"elk\",\"moose\"`, but received: \"pig\""
+        "type: Expected one of `\"male\",\"female\",\"child\",\"steralised male\"`, but received: \"unknown\""
       ]
     },
     {
-      "caseLabel": "Invalid species",
-      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "caseLabel": "Invalid type",
+      "caseDescription": "\"unknown\" is not an accepted animal type.",
       "expectedValid": false,
       "library": "Yup",
       "passed": false,
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.06680799999999863,
-      "avgDurationUs": 66.80799999999863,
+      "avgDurationMs": 0.06386399999999867,
+      "avgDurationUs": 63.86399999999867,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "of",
+        "type"
+      ],
       "errorMessages": [
-        "animalSpecies: Animal species must be one of: reindeer, elk, moose"
+        "type: Type must be one of: male, female, child, steralised male"
       ]
     },
     {
-      "caseLabel": "Invalid species",
-      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "caseLabel": "Invalid type",
+      "caseDescription": "\"unknown\" is not an accepted animal type.",
       "expectedValid": false,
       "library": "Typanion",
       "passed": false,
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.008088000000000192,
-      "avgDurationUs": 8.088000000000193,
+      "avgDurationMs": 0.008971999999998844,
+      "avgDurationUs": 8.971999999998843,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "type"
+      ],
       "errorMessages": [
-        ".animalSpecies: Expected one of \"reindeer\", \"elk\", or \"moose\" (got \"pig\")"
+        ".type: Expected one of \"male\", \"female\", \"child\", or \"steralised male\" (got \"unknown\")"
       ]
     },
     {
-      "caseLabel": "Invalid species",
-      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "caseLabel": "Invalid type",
+      "caseDescription": "\"unknown\" is not an accepted animal type.",
       "expectedValid": false,
       "library": "AJV",
       "passed": false,
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.0013200000000006184,
-      "avgDurationUs": 1.3200000000006185,
+      "avgDurationMs": 0.0012400000000002366,
+      "avgDurationUs": 1.2400000000002365,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "type"
+      ],
       "errorMessages": [
-        "animalSpecies: must be equal to one of the allowed values"
+        "type: must be equal to one of the allowed values"
       ]
     },
     {
-      "caseLabel": "Invalid species",
-      "caseDescription": "\"pig\" is not an accepted animal species.",
+      "caseLabel": "Invalid type",
+      "caseDescription": "\"unknown\" is not an accepted animal type.",
       "expectedValid": false,
       "library": "Joi",
       "passed": false,
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.030060000000000853,
-      "avgDurationUs": 30.060000000000855,
+      "avgDurationMs": 0.033163999999999305,
+      "avgDurationUs": 33.163999999999305,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "type"
+      ],
       "errorMessages": [
-        "animalSpecies: \"animalSpecies\" must be one of [reindeer, elk, moose]"
+        "type: \"type\" must be one of [male, female, child, steralised male]"
       ]
     },
     {
@@ -356,10 +404,11 @@
       "caughtError": false,
       "missedError": true,
       "falseReject": false,
-      "avgDurationMs": 0.0002200000000016189,
-      "avgDurationUs": 0.2200000000016189,
+      "avgDurationMs": 0.00019600000000082217,
+      "avgDurationUs": 0.19600000000082218,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -371,10 +420,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.013396000000000186,
-      "avgDurationUs": 13.396000000000186,
+      "avgDurationMs": 0.014692000000000007,
+      "avgDurationUs": 14.692000000000007,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         "animalCount: Animal count must be at least 1"
       ]
@@ -388,10 +440,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.018500000000001363,
-      "avgDurationUs": 18.500000000001364,
+      "avgDurationMs": 0.016964000000000395,
+      "avgDurationUs": 16.964000000000397,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         "animalCount: Expected a integer greater than or equal to 1 but received `-5`"
       ]
@@ -405,10 +460,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.06262000000000172,
-      "avgDurationUs": 62.62000000000172,
+      "avgDurationMs": 0.05568399999999883,
+      "avgDurationUs": 55.68399999999883,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         "animalCount: Animal count must be at least 1"
       ]
@@ -422,10 +480,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.005879999999999655,
-      "avgDurationUs": 5.879999999999654,
+      "avgDurationMs": 0.005824000000000069,
+      "avgDurationUs": 5.824000000000069,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         ".animalCount: Expected to be at least 1 (got -5)"
       ]
@@ -439,10 +500,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.0012479999999982284,
-      "avgDurationUs": 1.2479999999982283,
+      "avgDurationMs": 0.0012560000000007676,
+      "avgDurationUs": 1.2560000000007676,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         "animalCount: must be >= 1"
       ]
@@ -456,10 +520,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.018900000000001,
-      "avgDurationUs": 18.900000000001,
+      "avgDurationMs": 0.019003999999999906,
+      "avgDurationUs": 19.003999999999905,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         "animalCount: \"animalCount\" must be greater than or equal to 1"
       ]
@@ -473,10 +540,11 @@
       "caughtError": false,
       "missedError": true,
       "falseReject": false,
-      "avgDurationMs": 0.0002759999999989304,
-      "avgDurationUs": 0.27599999999893043,
+      "avgDurationMs": 0.0001999999999998181,
+      "avgDurationUs": 0.1999999999998181,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -488,10 +556,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.012699999999999817,
-      "avgDurationUs": 12.699999999999818,
+      "avgDurationMs": 0.012596000000000914,
+      "avgDurationUs": 12.596000000000913,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "totalWeightKg"
+      ],
       "errorMessages": [
         "totalWeightKg: Total weight must be greater than 0"
       ]
@@ -505,10 +576,14 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.01690800000000081,
-      "avgDurationUs": 16.90800000000081,
+      "avgDurationMs": 0.014755999999999858,
+      "avgDurationUs": 14.755999999999858,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "received",
+        "totalWeightKg"
+      ],
       "errorMessages": [
         "totalWeightKg: Expected a value of type `number`, but received: `0`"
       ]
@@ -522,10 +597,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.07420000000000072,
-      "avgDurationUs": 74.20000000000073,
+      "avgDurationMs": 0.06869999999999891,
+      "avgDurationUs": 68.69999999999891,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "totalWeightKg"
+      ],
       "errorMessages": [
         "totalWeightKg: Total weight must be greater than 0"
       ]
@@ -539,10 +617,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.004039999999999964,
-      "avgDurationUs": 4.039999999999964,
+      "avgDurationMs": 0.004787999999998647,
+      "avgDurationUs": 4.787999999998647,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "totalWeightKg"
+      ],
       "errorMessages": [
         ".totalWeightKg: Value must be greater than 0"
       ]
@@ -556,10 +637,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.001151999999999589,
-      "avgDurationUs": 1.151999999999589,
+      "avgDurationMs": 0.0011199999999985267,
+      "avgDurationUs": 1.1199999999985266,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "totalWeightKg"
+      ],
       "errorMessages": [
         "totalWeightKg: must be > 0"
       ]
@@ -573,10 +657,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.017200000000000274,
-      "avgDurationUs": 17.200000000000273,
+      "avgDurationMs": 0.01842000000000098,
+      "avgDurationUs": 18.420000000000982,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "totalWeightKg"
+      ],
       "errorMessages": [
         "totalWeightKg: \"totalWeightKg\" must be greater than 0"
       ]
@@ -590,10 +677,11 @@
       "caughtError": false,
       "missedError": true,
       "falseReject": false,
-      "avgDurationMs": 0.00021600000000034924,
-      "avgDurationUs": 0.21600000000034925,
+      "avgDurationMs": 0.00019600000000082217,
+      "avgDurationUs": 0.19600000000082218,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -605,13 +693,17 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.0162519999999995,
-      "avgDurationUs": 16.251999999999498,
+      "avgDurationMs": 0.01736799999999903,
+      "avgDurationUs": 17.36799999999903,
       "repetitions": 25,
-      "errorCount": 2,
+      "errorCount": 3,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
       "errorMessages": [
         "slaughterDate: Date must be in YYYY-MM-DD format",
-        "slaughterDate: Date must be a valid calendar date"
+        "slaughterDate: Date must be a valid calendar date",
+        "slaughterDate: Date cannot be in the future"
       ]
     },
     {
@@ -623,13 +715,17 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.015036000000000058,
-      "avgDurationUs": 15.036000000000058,
+      "avgDurationMs": 0.01953599999999824,
+      "avgDurationUs": 19.53599999999824,
       "repetitions": 25,
-      "errorCount": 2,
+      "errorCount": 3,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
       "errorMessages": [
         "slaughterDate: Expected a string matching `/^\\d{4}-\\d{2}-\\d{2}$/` but received \"15-11-2024\"",
-        "slaughterDate: Date must be a valid calendar date"
+        "slaughterDate: Date must be a valid calendar date",
+        "slaughterDate: Date cannot be in the future"
       ]
     },
     {
@@ -641,13 +737,17 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.08919999999999845,
-      "avgDurationUs": 89.19999999999845,
+      "avgDurationMs": 0.11525199999999813,
+      "avgDurationUs": 115.25199999999813,
       "repetitions": 25,
-      "errorCount": 2,
+      "errorCount": 3,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
       "errorMessages": [
         "slaughterDate: Date must be in YYYY-MM-DD format",
-        "slaughterDate: Date must be a valid calendar date"
+        "slaughterDate: Date must be a valid calendar date",
+        "slaughterDate: Date cannot be in the future"
       ]
     },
     {
@@ -659,10 +759,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.0037480000000005022,
-      "avgDurationUs": 3.748000000000502,
+      "avgDurationMs": 0.004731999999999062,
+      "avgDurationUs": 4.731999999999061,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
       "errorMessages": [
         ".slaughterDate: Expected to match the pattern /^\\d{4}-\\d{2}-\\d{2}$/ (got \"15-11-2024\")"
       ]
@@ -676,10 +779,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.0011560000000008586,
-      "avgDurationUs": 1.1560000000008586,
+      "avgDurationMs": 0.0012399999999979628,
+      "avgDurationUs": 1.2399999999979627,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
       "errorMessages": [
         "slaughterDate: must match pattern \"^\\d{4}-\\d{2}-\\d{2}$\""
       ]
@@ -693,13 +799,290 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.014279999999998835,
-      "avgDurationUs": 14.279999999998836,
+      "avgDurationMs": 0.015627999999999247,
+      "avgDurationUs": 15.627999999999247,
       "repetitions": 25,
       "errorCount": 2,
+      "fieldsWithErrors": [
+        "pattern",
+        "slaughterDate"
+      ],
       "errorMessages": [
         "slaughterDate: \"slaughterDate\" with value \"15-11-2024\" fails to match the required pattern: /^\\d{4}-\\d{2}-\\d{2}$/",
         "slaughterDate: Date must be a valid calendar date"
+      ]
+    },
+    {
+      "caseLabel": "Future slaughter date",
+      "caseDescription": "A slaughter date in the future should be rejected in domain validation.",
+      "expectedValid": false,
+      "library": "TypeScript only",
+      "passed": true,
+      "caughtError": false,
+      "missedError": true,
+      "falseReject": false,
+      "avgDurationMs": 0.0004719999999997526,
+      "avgDurationUs": 0.4719999999997526,
+      "repetitions": 25,
+      "errorCount": 0,
+      "fieldsWithErrors": [],
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Future slaughter date",
+      "caseDescription": "A slaughter date in the future should be rejected in domain validation.",
+      "expectedValid": false,
+      "library": "Zod",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.011648000000000137,
+      "avgDurationUs": 11.648000000000138,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
+      "errorMessages": [
+        "slaughterDate: Date cannot be in the future"
+      ]
+    },
+    {
+      "caseLabel": "Future slaughter date",
+      "caseDescription": "A slaughter date in the future should be rejected in domain validation.",
+      "expectedValid": false,
+      "library": "Superstruct",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.015799999999999273,
+      "avgDurationUs": 15.799999999999272,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
+      "errorMessages": [
+        "slaughterDate: Date cannot be in the future"
+      ]
+    },
+    {
+      "caseLabel": "Future slaughter date",
+      "caseDescription": "A slaughter date in the future should be rejected in domain validation.",
+      "expectedValid": false,
+      "library": "Yup",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.05699200000000019,
+      "avgDurationUs": 56.99200000000019,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
+      "errorMessages": [
+        "slaughterDate: Date cannot be in the future"
+      ]
+    },
+    {
+      "caseLabel": "Future slaughter date",
+      "caseDescription": "A slaughter date in the future should be rejected in domain validation.",
+      "expectedValid": false,
+      "library": "Typanion",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0030359999999996033,
+      "avgDurationUs": 3.0359999999996035,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
+      "errorMessages": [
+        ".slaughterDate: Date cannot be in the future"
+      ]
+    },
+    {
+      "caseLabel": "Future slaughter date",
+      "caseDescription": "A slaughter date in the future should be rejected in domain validation.",
+      "expectedValid": false,
+      "library": "AJV",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0013040000000000872,
+      "avgDurationUs": 1.3040000000000873,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
+      "errorMessages": [
+        "slaughterDate: Date cannot be in the future"
+      ]
+    },
+    {
+      "caseLabel": "Future slaughter date",
+      "caseDescription": "A slaughter date in the future should be rejected in domain validation.",
+      "expectedValid": false,
+      "library": "Joi",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.011532000000001971,
+      "avgDurationUs": 11.532000000001972,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "slaughterDate"
+      ],
+      "errorMessages": [
+        "slaughterDate: Date cannot be in the future"
+      ]
+    },
+    {
+      "caseLabel": "Wrong ear-tag / record ID format",
+      "caseDescription": "Record ID must follow ear-tag format SL-YYYY-NNN.",
+      "expectedValid": false,
+      "library": "TypeScript only",
+      "passed": true,
+      "caughtError": false,
+      "missedError": true,
+      "falseReject": false,
+      "avgDurationMs": 0.00018799999999828288,
+      "avgDurationUs": 0.18799999999828287,
+      "repetitions": 25,
+      "errorCount": 0,
+      "fieldsWithErrors": [],
+      "errorMessages": []
+    },
+    {
+      "caseLabel": "Wrong ear-tag / record ID format",
+      "caseDescription": "Record ID must follow ear-tag format SL-YYYY-NNN.",
+      "expectedValid": false,
+      "library": "Zod",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.013795999999999822,
+      "avgDurationUs": 13.795999999999822,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "id"
+      ],
+      "errorMessages": [
+        "id: ID must match ear-tag format SL-YYYY-NNN"
+      ]
+    },
+    {
+      "caseLabel": "Wrong ear-tag / record ID format",
+      "caseDescription": "Record ID must follow ear-tag format SL-YYYY-NNN.",
+      "expectedValid": false,
+      "library": "Superstruct",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.03245200000000068,
+      "avgDurationUs": 32.45200000000068,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "id"
+      ],
+      "errorMessages": [
+        "id: ID must match ear-tag format SL-YYYY-NNN"
+      ]
+    },
+    {
+      "caseLabel": "Wrong ear-tag / record ID format",
+      "caseDescription": "Record ID must follow ear-tag format SL-YYYY-NNN.",
+      "expectedValid": false,
+      "library": "Yup",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.06405199999999922,
+      "avgDurationUs": 64.05199999999923,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "id"
+      ],
+      "errorMessages": [
+        "id: ID must match ear-tag format SL-YYYY-NNN"
+      ]
+    },
+    {
+      "caseLabel": "Wrong ear-tag / record ID format",
+      "caseDescription": "Record ID must follow ear-tag format SL-YYYY-NNN.",
+      "expectedValid": false,
+      "library": "Typanion",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.003492000000001099,
+      "avgDurationUs": 3.4920000000010987,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "id"
+      ],
+      "errorMessages": [
+        ".id: Expected to match the pattern /^SL-\\d{4}-\\d{3,6}$/ (got \"TAG-24-A7\")"
+      ]
+    },
+    {
+      "caseLabel": "Wrong ear-tag / record ID format",
+      "caseDescription": "Record ID must follow ear-tag format SL-YYYY-NNN.",
+      "expectedValid": false,
+      "library": "AJV",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.0010799999999994724,
+      "avgDurationUs": 1.0799999999994725,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "id"
+      ],
+      "errorMessages": [
+        "id: must match pattern \"^SL-\\d{4}-\\d{3,6}$\""
+      ]
+    },
+    {
+      "caseLabel": "Wrong ear-tag / record ID format",
+      "caseDescription": "Record ID must follow ear-tag format SL-YYYY-NNN.",
+      "expectedValid": false,
+      "library": "Joi",
+      "passed": false,
+      "caughtError": true,
+      "missedError": false,
+      "falseReject": false,
+      "avgDurationMs": 0.012552000000000589,
+      "avgDurationUs": 12.55200000000059,
+      "repetitions": 25,
+      "errorCount": 1,
+      "fieldsWithErrors": [
+        "id",
+        "pattern"
+      ],
+      "errorMessages": [
+        "id: \"id\" with value \"TAG-24-A7\" fails to match the required pattern: /^SL-\\d{4}-\\d{3,6}$/"
       ]
     },
     {
@@ -711,10 +1094,11 @@
       "caughtError": false,
       "missedError": true,
       "falseReject": false,
-      "avgDurationMs": 0.0004719999999997526,
-      "avgDurationUs": 0.4719999999997526,
+      "avgDurationMs": 0.00018800000000055662,
+      "avgDurationUs": 0.1880000000005566,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -726,10 +1110,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.011795999999999368,
-      "avgDurationUs": 11.795999999999367,
+      "avgDurationMs": 0.012888000000000375,
+      "avgDurationUs": 12.888000000000375,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "veterinarianApproved"
+      ],
       "errorMessages": [
         "veterinarianApproved: Veterinarian approval must be true or false"
       ]
@@ -743,10 +1130,14 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.01205600000000004,
-      "avgDurationUs": 12.05600000000004,
+      "avgDurationMs": 0.01366800000000012,
+      "avgDurationUs": 13.66800000000012,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "received",
+        "veterinarianApproved"
+      ],
       "errorMessages": [
         "veterinarianApproved: Expected a value of type `boolean`, but received: `\"true\"`"
       ]
@@ -760,10 +1151,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.06133599999999888,
-      "avgDurationUs": 61.335999999998876,
+      "avgDurationMs": 0.06053600000000188,
+      "avgDurationUs": 60.53600000000188,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "veterinarianApproved"
+      ],
       "errorMessages": [
         "veterinarianApproved: Veterinarian approval must be true or false"
       ]
@@ -777,10 +1171,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.002644000000000233,
-      "avgDurationUs": 2.644000000000233,
+      "avgDurationMs": 0.0035760000000004764,
+      "avgDurationUs": 3.5760000000004766,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "veterinarianApproved"
+      ],
       "errorMessages": [
         ".veterinarianApproved: Expected a valid enumeration value (got \"true\")"
       ]
@@ -794,10 +1191,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.0011120000000005349,
-      "avgDurationUs": 1.1120000000005348,
+      "avgDurationMs": 0.0010840000000007421,
+      "avgDurationUs": 1.0840000000007421,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "veterinarianApproved"
+      ],
       "errorMessages": [
         "veterinarianApproved: must be boolean"
       ]
@@ -811,10 +1211,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.011639999999999873,
-      "avgDurationUs": 11.639999999999873,
+      "avgDurationMs": 0.010755999999998949,
+      "avgDurationUs": 10.755999999998949,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "veterinarianApproved"
+      ],
       "errorMessages": [
         "veterinarianApproved: \"veterinarianApproved\" must be a boolean"
       ]
@@ -828,10 +1231,11 @@
       "caughtError": false,
       "missedError": true,
       "falseReject": false,
-      "avgDurationMs": 0.00020800000000008366,
-      "avgDurationUs": 0.20800000000008367,
+      "avgDurationMs": 0.00018800000000055662,
+      "avgDurationUs": 0.1880000000005566,
       "repetitions": 25,
       "errorCount": 0,
+      "fieldsWithErrors": [],
       "errorMessages": []
     },
     {
@@ -843,10 +1247,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.011284000000000561,
-      "avgDurationUs": 11.28400000000056,
+      "avgDurationMs": 0.012744000000000142,
+      "avgDurationUs": 12.744000000000142,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         "animalCount: Animal count must be a whole number"
       ]
@@ -860,10 +1267,14 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.02328399999999874,
-      "avgDurationUs": 23.28399999999874,
+      "avgDurationMs": 0.014372000000000752,
+      "avgDurationUs": 14.372000000000753,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount",
+        "received"
+      ],
       "errorMessages": [
         "animalCount: Expected an integer, but received: 12.5"
       ]
@@ -877,10 +1288,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.055072000000000114,
-      "avgDurationUs": 55.072000000000116,
+      "avgDurationMs": 0.07413999999999987,
+      "avgDurationUs": 74.13999999999987,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         "animalCount: Animal count must be a whole number"
       ]
@@ -894,10 +1308,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.0020719999999982974,
-      "avgDurationUs": 2.0719999999982974,
+      "avgDurationMs": 0.003823999999999614,
+      "avgDurationUs": 3.8239999999996144,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         ".animalCount: Expected to be an integer (got 12.5)"
       ]
@@ -911,10 +1328,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.002080000000000837,
-      "avgDurationUs": 2.0800000000008367,
+      "avgDurationMs": 0.0013480000000004112,
+      "avgDurationUs": 1.348000000000411,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         "animalCount: must be integer"
       ]
@@ -928,10 +1348,13 @@
       "caughtError": true,
       "missedError": false,
       "falseReject": false,
-      "avgDurationMs": 0.012947999999998955,
-      "avgDurationUs": 12.947999999998956,
+      "avgDurationMs": 0.01503199999999879,
+      "avgDurationUs": 15.031999999998789,
       "repetitions": 25,
       "errorCount": 1,
+      "fieldsWithErrors": [
+        "animalCount"
+      ],
       "errorMessages": [
         "animalCount: \"animalCount\" must be an integer"
       ]
@@ -940,66 +1363,66 @@
   "summaryByLibrary": [
     {
       "library": "TypeScript only",
-      "totalCases": 8,
-      "accuracyPct": 12.5,
+      "totalCases": 10,
+      "accuracyPct": 10,
       "caughtErrors": 0,
-      "missedErrors": 7,
+      "missedErrors": 9,
       "falseRejects": 0,
-      "avgDurationUsPerCase": 0.5780000000004293
+      "avgDurationUsPerCase": 0.6308000000001357
     },
     {
       "library": "Zod",
-      "totalCases": 8,
+      "totalCases": 10,
       "accuracyPct": 100,
-      "caughtErrors": 7,
+      "caughtErrors": 9,
       "missedErrors": 0,
       "falseRejects": 0,
-      "avgDurationUsPerCase": 18.096499999999764
+      "avgDurationUsPerCase": 18.6088000000002
     },
     {
       "library": "Superstruct",
-      "totalCases": 8,
+      "totalCases": 10,
       "accuracyPct": 100,
-      "caughtErrors": 7,
+      "caughtErrors": 9,
       "missedErrors": 0,
       "falseRejects": 0,
-      "avgDurationUsPerCase": 21.299500000000364
+      "avgDurationUsPerCase": 26.447999999999865
     },
     {
       "library": "Yup",
-      "totalCases": 8,
+      "totalCases": 10,
       "accuracyPct": 100,
-      "caughtErrors": 7,
+      "caughtErrors": 9,
       "missedErrors": 0,
       "falseRejects": 0,
-      "avgDurationUsPerCase": 70.39849999999973
+      "avgDurationUsPerCase": 73.30719999999974
     },
     {
       "library": "Typanion",
-      "totalCases": 8,
+      "totalCases": 10,
       "accuracyPct": 100,
-      "caughtErrors": 7,
+      "caughtErrors": 9,
       "missedErrors": 0,
       "falseRejects": 0,
-      "avgDurationUsPerCase": 7.131499999999562
+      "avgDurationUsPerCase": 7.619199999999637
     },
     {
       "library": "AJV",
-      "totalCases": 8,
+      "totalCases": 10,
       "accuracyPct": 100,
-      "caughtErrors": 7,
+      "caughtErrors": 9,
       "missedErrors": 0,
       "falseRejects": 0,
-      "avgDurationUsPerCase": 2.9640000000000555
+      "avgDurationUsPerCase": 2.8771999999999025
     },
     {
       "library": "Joi",
-      "totalCases": 8,
+      "totalCases": 10,
       "accuracyPct": 100,
-      "caughtErrors": 7,
+      "caughtErrors": 9,
       "missedErrors": 0,
       "falseRejects": 0,
-      "avgDurationUsPerCase": 21.881999999999948
+      "avgDurationUsPerCase": 21.412799999999834
     }
   ]
 }

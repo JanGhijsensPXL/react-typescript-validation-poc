@@ -24,7 +24,7 @@ function validateWithZod(data: unknown): { passed: boolean; errors: string[] } {
 export default function ZodValidationDemo({ testCases }: Props) {
   return (
     <section className="demo-section">
-      <h2>Approach 2 — TypeScript + Zod Runtime Validation</h2>
+      <h2>Approach 2 - TypeScript + Zod Runtime Validation</h2>
       <p className="approach-description">
         Zod schemas validate every field at <strong>runtime</strong>. Invalid values such as
         wrong types, out-of-range numbers, unsupported enum values, and malformed dates are

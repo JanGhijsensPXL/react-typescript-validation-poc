@@ -11,6 +11,7 @@ import { validateWithJoi } from '../schemas/slaughterRecordJoi';
 
 export type BenchmarkRow = {
   validator: string;
+  setupMs: number;
   avgMsPerRun: number;
   avgUsPerItem: number;
   elapsedMs: number;
@@ -48,6 +49,7 @@ export type DatasetProfile = 'both' | 'valid-only' | 'invalid-only';
 
 type Validator = {
   label: string;
+  setupMs: number;
   run: (input: unknown) => boolean;
 };
 
@@ -157,6 +159,7 @@ function benchOne(validator: Validator, dataset: BenchmarkItem[], runs: number):
 
   return {
     validator: validator.label,
+    setupMs: validator.setupMs,
     avgMsPerRun: elapsedMs / runs,
     avgUsPerItem: (elapsedMs * 1000) / totalItems,
     elapsedMs,
@@ -175,76 +178,60 @@ function benchOne(validator: Validator, dataset: BenchmarkItem[], runs: number):
 }
 
 function getValidators(mode: BenchmarkMode): Validator[] {
+  // Helper to measure setup time by running a dummy validation 100 times 
+  // and averaging to isolate schema compilation cost from first-call overhead.
+  function measureSetup(runFn: (input: unknown) => boolean, setupRuns: number = 100): number {
+    const start = performance.now();
+    for (let i = 0; i < setupRuns; i++) {
+      runFn(VALID_RECORD);
+    }
+    const elapsed = performance.now() - start;
+    return elapsed / setupRuns;
+  }
+
   if (mode === 'fast-boolean') {
+    const tsOnlyRun = (input: unknown) => validateWithTypeScriptOnly(input).passed;
+    const zodRun = (input: unknown) => {
+      try {
+        slaughterRecordSchema.parse(input);
+        return true;
+      } catch {
+        return false;
+      }
+    };
+    const superstructRun = (input: unknown) => slaughterRecordSuperstructSchema.is(input);
+    const yupRun = (input: unknown) => slaughterRecordYupSchema.isValidSync(input, { strict: true });
+    const typanionRun = (input: unknown) => slaughterRecordTypanionSchema(input);
+    const ajvRun = (input: unknown) => validateWithAjv(input).passed;
+    const joiRun = (input: unknown) => validateWithJoi(input).passed;
+
     return [
-      {
-        label: 'TypeScript only',
-        run: (input) => validateWithTypeScriptOnly(input).passed,
-      },
-      {
-        label: 'Zod',
-        // Parse/throw pattern approximates fail-fast behavior.
-        run: (input) => {
-          try {
-            slaughterRecordSchema.parse(input);
-            return true;
-          } catch {
-            return false;
-          }
-        },
-      },
-      {
-        label: 'Superstruct',
-        run: (input) => slaughterRecordSuperstructSchema.is(input),
-      },
-      {
-        label: 'Yup',
-        run: (input) => slaughterRecordYupSchema.isValidSync(input, { strict: true }),
-      },
-      {
-        label: 'Typanion',
-        run: (input) => slaughterRecordTypanionSchema(input),
-      },
-      {
-        label: 'AJV',
-        run: (input) => validateWithAjv(input).passed,
-      },
-      {
-        label: 'Joi',
-        run: (input) => validateWithJoi(input).passed,
-      },
+      { label: 'TypeScript only', setupMs: measureSetup(tsOnlyRun), run: tsOnlyRun },
+      { label: 'Zod', setupMs: measureSetup(zodRun), run: zodRun },
+      { label: 'Superstruct', setupMs: measureSetup(superstructRun), run: superstructRun },
+      { label: 'Yup', setupMs: measureSetup(yupRun), run: yupRun },
+      { label: 'Typanion', setupMs: measureSetup(typanionRun), run: typanionRun },
+      { label: 'AJV', setupMs: measureSetup(ajvRun), run: ajvRun },
+      { label: 'Joi', setupMs: measureSetup(joiRun), run: joiRun },
     ];
   }
 
+  const tsOnlyRun = (input: unknown) => validateWithTypeScriptOnly(input).passed;
+  const zodRun = (input: unknown) => slaughterRecordSchema.safeParse(input).success;
+  const superstructRun = (input: unknown) => !validate(input, slaughterRecordSuperstructSchema)[0];
+  const yupRun = (input: unknown) => validateWithYup(input).passed;
+  const typanionRun = (input: unknown) => !as(input, slaughterRecordTypanionSchema, { errors: true, throw: false }).errors;
+  const ajvRun = (input: unknown) => validateWithAjv(input).passed;
+  const joiRun = (input: unknown) => validateWithJoi(input).passed;
+
   return [
-    {
-      label: 'TypeScript only',
-      run: (input) => validateWithTypeScriptOnly(input).passed,
-    },
-    {
-      label: 'Zod',
-      run: (input) => slaughterRecordSchema.safeParse(input).success,
-    },
-    {
-      label: 'Superstruct',
-      run: (input) => !validate(input, slaughterRecordSuperstructSchema)[0],
-    },
-    {
-      label: 'Yup',
-      run: (input) => validateWithYup(input).passed,
-    },
-    {
-      label: 'Typanion',
-      run: (input) => !as(input, slaughterRecordTypanionSchema, { errors: true, throw: false }).errors,
-    },
-    {
-      label: 'AJV',
-      run: (input) => validateWithAjv(input).passed,
-    },
-    {
-      label: 'Joi',
-      run: (input) => validateWithJoi(input).passed,
-    },
+    { label: 'TypeScript only', setupMs: measureSetup(tsOnlyRun), run: tsOnlyRun },
+    { label: 'Zod', setupMs: measureSetup(zodRun), run: zodRun },
+    { label: 'Superstruct', setupMs: measureSetup(superstructRun), run: superstructRun },
+    { label: 'Yup', setupMs: measureSetup(yupRun), run: yupRun },
+    { label: 'Typanion', setupMs: measureSetup(typanionRun), run: typanionRun },
+    { label: 'AJV', setupMs: measureSetup(ajvRun), run: ajvRun },
+    { label: 'Joi', setupMs: measureSetup(joiRun), run: joiRun },
   ];
 }
 
